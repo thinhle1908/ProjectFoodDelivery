@@ -16,3 +16,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route admin
+Route::middleware('auth.admin')->prefix('admin')->group(function ()
+{
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
+
+//Route saler
+Route::middleware('auth.saler')->prefix('saler')->group(function ()
+{
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
+
+//Route user
+Route::middleware('auth.user')->prefix('user')->group(function ()
+{
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});

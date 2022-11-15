@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('order_item', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
-            $table->foreignId('item_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->foreignId('item_id')->constrained('item','id');
             $table->integer('quantity');
             $table->float('total');
-            $table->foreignId('order_id')->unsigned();
+            $table->foreignId('order_id')->constrained('order','id');
         });
     }
 

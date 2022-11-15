@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckSaler
 {
@@ -16,7 +17,15 @@ class CheckSaler
      */
     public function handle(Request $request, Closure $next)
     {
-        echo "middleware saler";
-        return $next($request);
+        if (Auth::check())
+        {
+             if(Auth::user()->role =='saler')
+             {
+                 return $next($request);
+             }
+             else{
+                abort(403);
+             }
+        }
     }
 }

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('city',50);
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
-            $table->foreignId('user_id')->unsigned();
+            $table->foreignId('user_id')->constrained('user','id');
         });
     }
 

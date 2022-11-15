@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('variation_option', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('value',50)->nullable();
-            $table->integer('variation_id');
+            $table->integer('variation_id')->unsigned();
+            $table->foreign('variation_id')->references('id')->on('variation');
             
         });
     }

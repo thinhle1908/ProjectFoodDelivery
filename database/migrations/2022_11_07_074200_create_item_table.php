@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('item', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
+            $table->bigIncrements('id');
             $table->string('sku',100);
             $table->string('image',250)->nullable();
             $table->float('price');
@@ -25,8 +25,8 @@ return new class extends Migration
             $table->bigInteger('updated_by');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
-            $table->foreignId('product_id')->unsigned();
-            $table->foreignId('discount')->unsigned();
+            $table->foreignId('product_id')->constrained('product','id');
+            $table->integer('discount_id')->unsigned()->constrained('discount','id');
         });
     }
 

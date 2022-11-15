@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_role', function (Blueprint $table) {
-            $table->foreignId('user_id')->unsigned();
-            $table->foreignId('role_id')->unsigned();
-            $table->primary(['user_id','role_id']);
-
+        Schema::create('product_category', function (Blueprint $table) {
+            $table->foreignId('product_id')->unsigned();
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('category');
+            $table->primary(['product_id','category_id']);
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_role');
+        Schema::dropIfExists('product_category');
     }
 };

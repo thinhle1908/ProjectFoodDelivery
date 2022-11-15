@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('product', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
+            $table->bigIncrements('id');
             $table->string('name',100);
             $table->string('description',250)->nullable();
             $table->string('image',250)->nullable();

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('shopping_cartitem', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->unsigned();
+            $table->increments('id');
+            $table->foreignId('user_id')->constrained('user','id');
         });
     }
 

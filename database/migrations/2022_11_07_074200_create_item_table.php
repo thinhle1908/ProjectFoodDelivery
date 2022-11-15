@@ -26,7 +26,8 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->foreignId('product_id')->constrained('product','id');
-            $table->integer('discount_id')->unsigned()->constrained('discount','id');
+            $table->integer('discount_id')->unsigned();
+            $table->foreign('discount_id')->references('id')->on('discount');
         });
     }
 

@@ -9,37 +9,84 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function logout()
+    //View Authentication User
+    //Get Register
+    public function GetUserRegister()
     {
-      
-        Auth::logout();
-        return redirect(route('login.get'));
+
+        $page_redirect = 'userRegister';
+        //Check Login
+        return $this->CheckLoginAndRedirectPage($page_redirect);
     }
-    public function getRegister(Request $request)
+
+    //Post Login
+    public function PostUserRegister(Request $request)
     {
-        if (Auth::check()) {
-            return redirect(route('home'));
-        }
-        return view('register');
-        
+        $page_redirect = '/login';
+        return $this->Register($request,$page_redirect);
     }
-    public function register(Request $request)
+
+    //Get Login
+    public function GetUserLogin()
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:6|same:password_confirm',
-            'password_confirm' => 'required|min:6',
-        ]);
-        $user =  User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'permission' => 'user',
-        ]);
-        redirect('/login');
+        $page_redirect = 'userLogin';
+        //Check Login
+        return $this->CheckLoginAndRedirectPage($page_redirect);
     }
-    public function login(Request $request)
+
+    //View Authentication Saler
+    //Get Register
+    public function GetAdminRegister()
+    {
+
+        $page_redirect = 'adminRegister';
+        //Check Login
+        return $this->CheckLoginAndRedirectPage($page_redirect);
+    }
+
+    //Post Login
+    public function PostAdminRegister(Request $request)
+    {
+        $page_redirect = '/login-admin';
+        return $this->Register($request,$page_redirect);
+    }
+
+    //Get Login
+    public function GetAdminLogin()
+    {
+        $page_redirect = 'adminLogin';
+        //Check Login
+        return $this->CheckLoginAndRedirectPage($page_redirect);
+    }
+    
+      //View Authentication Saler
+    //Get Register
+    public function GetSalerRegister()
+    {
+
+        $page_redirect = 'salerRegister';
+        //Check Login
+        return $this->CheckLoginAndRedirectPage($page_redirect);
+    }
+
+    //Post Login
+    public function PostSalerRegister(Request $request)
+    {
+        $page_redirect = '/login-saler';
+        return $this->Register($request,$page_redirect);
+    }
+
+    //Get Login
+    public function GetSalerLogin()
+    {
+        $page_redirect = 'salerLogin';
+        //Check Login
+        return $this->CheckLoginAndRedirectPage($page_redirect);
+    }
+    
+    //Authentication
+    //Login
+    public function Login(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -49,11 +96,46 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/home');
         }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
+    }
+
+    //Register
+    public function Register($request,$page_redirect)
+    {
+        $validated = $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6|same:password_confirm',
+            'password_confirm' => 'required|min:6',
+        ]);
+        User::create([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect($page_redirect)->withSuccess('Sign Up Success');;
+    }
+
+    //Get Logout
+    public function Logout()
+    {
+        Auth::logout();
+        return redirect(route('login.user.get'));
+    }
+
+    //Check loign if the user has entered, go back to the home page
+    public function CheckLoginAndRedirectPage($page_redirect)
+    {
+        if (Auth::check()) {
+            return redirect(route('home'));
+        }
+        return view($page_redirect);
     }
 }

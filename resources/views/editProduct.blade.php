@@ -12,14 +12,14 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css../?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+ 
     <!-- Custom styles for this template -->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -336,72 +336,35 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-
-                    <!-- DataTales Example -->
-                    @if(Session::has('success'))
-                                    <div class="alert alert-success">
-                                        {{Session::get('success')}}
-                                    </div>
-                                    @endif
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                            <a href="create-product"><button type="button" class="m-3 btn btn-primary">Create</button></a>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Image</th>
-                                            <th>Created_at</th>
-                                            <th>Updated_at</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Image</th>
-                                            <th>Created_at</th>
-                                            <th>Updated_at</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        @foreach($products as $product)
-                                        <tr>
-                                            <th>{{$product->id}}</th>
-                                            <th>{{$product->name}}</th>
-                                            <th>{{$product->description}}</th>
-                                            <th><img height="100px" width="100px" src="{{asset('img/products').'/'.$product->image}}" alt=""></th>
-                                            <th>{{$product->created_at}}</th>
-                                            <th>{{$product->updated_at}}</th>
-                                            <th><a href="edit-product/{{$product->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-product/{{$product->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
+                            @endif
+                <div class="container">
+                    <form method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input type="file" class="form-control-file" id="image" name="image">
                         </div>
-                    </div>
 
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Product Name" name="name" value="{{$product->name}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="3" placeholder="text..." name="description">{{$product->description}}</textarea>
+                        </div>
+                        <button type="submit" class="float-right btn btn-primary">Edit Product</button>
+                    </form>
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
@@ -446,21 +409,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="../../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../../js/demo/datatables-demo.js"></script>
 
 </body>
 

@@ -63,7 +63,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('editProduct')->with('product', $product);
     }
 
     /**
@@ -86,7 +87,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'image' => 'image',
+            'name' => 'required',
+            'description' => 'required|string'
+        ]);
+        $product = Product::find($id);
+        if (!$request->image) {
+            $product->update([
+                'name' => $request->name,
+                'description' => $request->description
+            ]);
+        } else {
+            $image_path = 'img/products/' . $product->image;  // Value is not URL but directory file path
+            if (File::exists($image_path)) {
+                File::delete($image_path);
+            }
+            //Move Image to forder and get name image
+            $nameimg = $request->file('image')->hashName();
+            request()->image->move(public_path('img/products'), $nameimg);
+            $product->update([
+                'image' => $nameimg,
+                'name' => $request->name,
+                'description' => $request->description
+            ]);
+        }
+        return redirect(route('products.get'))->withSuccess('Edit Product Success');
     }
 
     /**
@@ -98,12 +124,12 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        
-        $image_path = 'img/products/'.$product->image;  // Value is not URL but directory file path
+
+        $image_path = 'img/products/' . $product->image;  // Value is not URL but directory file path
         if (File::exists($image_path)) {
             File::delete($image_path);
         }
-       
+
         $product->delete();
         return redirect(route('products.get'))->withSuccess('Delete Product Success');
     }

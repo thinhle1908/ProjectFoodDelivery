@@ -349,7 +349,7 @@
                     <form method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="image">Imgae</label>
+                            <label for="image">Image</label>
                             <input type="file" class="form-control-file" id="image" name="image">
                         </div>
 

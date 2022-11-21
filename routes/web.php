@@ -60,6 +60,8 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function ()
     Route::get('/delete-product/{id}', [ProductController::class, 'destroy'])->name('products.delete');
     Route::get('/create-product', [ProductController::class, 'create'])->name('products.create');
     Route::post('/create-product', [ProductController::class, 'store'])->name('products.create.post');
+    Route::get('/edit-product/{id}', [ProductController::class, 'show'])->name('products.create.post');
+    Route::post('/edit-product/{id}', [ProductController::class, 'update'])->name('products.create.post');
 });
 
 //Route user

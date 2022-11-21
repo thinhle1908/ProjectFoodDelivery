@@ -19,13 +19,16 @@ class CheckSaler
     {
         if (Auth::check())
         {
-             if(Auth::user()->role =='saler')
+             if(Auth::user()->role[0]->name =='saler')
              {
                  return $next($request);
              }
              else{
                 abort(403);
              }
+        }else{
+            return redirect(route('login.saler.get'));
         }
+
     }
 }

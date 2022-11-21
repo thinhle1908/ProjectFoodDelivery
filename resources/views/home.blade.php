@@ -9,5 +9,6 @@
 <body>
     <h1>Hello {{auth()->user()->firstname .' ' .auth()->user()->lastname}}</h1>
     <h2>Your email is {{ auth()->user()->email}}</h2>
+    <h2>Your role is {{ auth()->user()->role[0]->name}}</h2>
 </body>
 </html>

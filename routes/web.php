@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,9 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+
 //Authentication User
 //Register
 Route::get('/register', [AuthController::class, 'GetUserRegister'])->name('register.user.get');
@@ -54,15 +53,16 @@ Route::get('/logout', [AuthController::class, 'Logout'])->name('logout.get');
 Route::middleware('auth.admin')->prefix('admin')->group(function () {
 });
 
-// //Route saler
-// Route::middleware('auth.saler')->prefix('saler')->group(function ()
-// {
-//     Route::get('/', function () {
-//         return view('welcome');
-//     });
-// });
+//Route saler
+Route::middleware(['auth.saler'])->prefix('saler')->group(function ()
+{
+    Route::get('/products', [ProductController::class, 'index'])->name('products.get');
+    Route::get('/delete-product/{id}', [ProductController::class, 'destroy'])->name('products.delete');
+    Route::get('/create-product', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/create-product', [ProductController::class, 'store'])->name('products.create.post');
+});
 
-// //Route user
+//Route user
 // Route::middleware('auth.user')->prefix('user')->group(function ()
 // {
 //     Route::get('/', function () {

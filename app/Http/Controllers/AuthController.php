@@ -142,7 +142,7 @@ class AuthController extends Controller
             return abort(500);
         }
 
-        return redirect($page_redirect)->withSuccess('Sign Up Success');;
+        return redirect($page_redirect)->withSuccess('Sign Up Success');
     }
 
     //Get Logout

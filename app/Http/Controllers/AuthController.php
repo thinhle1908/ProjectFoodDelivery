@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\User_Role;
+use Exception;
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +26,7 @@ class AuthController extends Controller
     public function PostUserRegister(Request $request)
     {
         $page_redirect = '/login';
-        return $this->Register($request,$page_redirect);
+        return $this->Register($request, $page_redirect);
     }
 
     //Get Login
@@ -48,7 +51,7 @@ class AuthController extends Controller
     public function PostAdminRegister(Request $request)
     {
         $page_redirect = '/login-admin';
-        return $this->Register($request,$page_redirect);
+        return $this->Register($request, $page_redirect);
     }
 
     //Get Login
@@ -58,8 +61,8 @@ class AuthController extends Controller
         //Check Login
         return $this->CheckLoginAndRedirectPage($page_redirect);
     }
-    
-      //View Authentication Saler
+
+    //View Authentication Saler
     //Get Register
     public function GetSalerRegister()
     {
@@ -73,7 +76,7 @@ class AuthController extends Controller
     public function PostSalerRegister(Request $request)
     {
         $page_redirect = '/login-saler';
-        return $this->Register($request,$page_redirect);
+        return $this->Register($request, $page_redirect);
     }
 
     //Get Login
@@ -83,7 +86,7 @@ class AuthController extends Controller
         //Check Login
         return $this->CheckLoginAndRedirectPage($page_redirect);
     }
-    
+
     //Authentication
     //Login
     public function Login(Request $request)
@@ -105,21 +108,40 @@ class AuthController extends Controller
     }
 
     //Register
-    public function Register($request,$page_redirect)
+    public function Register($request, $page_redirect)
     {
         $validated = $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:user',
             'password' => 'required|min:6|same:password_confirm',
             'password_confirm' => 'required|min:6',
         ]);
-        User::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $role = 0;
+        if ($page_redirect == "/login-admin") {
+            $role = 1;
+        }
+        else if($page_redirect == "/login-saler"){
+            $role = 2;
+        }
+        else{
+            $role = 3;
+        }
+        try {
+            $user = User::create([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            User_Role::create([
+                'user_id'=>$user->id,
+                'role_id'=>$role
+            ]);
+        } catch (Exception $ex) {
+            return abort(500);
+        }
+
         return redirect($page_redirect)->withSuccess('Sign Up Success');;
     }
 

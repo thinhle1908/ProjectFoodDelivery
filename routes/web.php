@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Variation_OptionController;
 use App\Http\Controllers\VariationController;
+use App\Models\Variation_Option;
 use Illuminate\Support\Facades\Route;
 
 
@@ -78,6 +80,13 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     Route::get('/delete-variation/{id}', [VariationController::class, 'destroy'])->name('variation.delete');
     Route::get('/edit-variation/{id}', [VariationController::class, 'show'])->name('variation.create.post');
     Route::post('/edit-variation/{id}', [VariationController::class, 'update'])->name('variation.create.post');
+      //Variation Option
+    Route::get('/variation/{variation_id}/variation-option/', [Variation_OptionController::class, 'show'])->name('variation-option.get');    
+    Route::get('/variation/{variation_id}/create-variation-option/', [Variation_OptionController::class, 'create'])->name('create.variation-option.get');    
+    Route::post('/variation/{variation_id}/create-variation-option/', [Variation_OptionController::class, 'store'])->name('create.variation-option.post');   
+    Route::get('/variation/{variation_id}/delete-variation-option/{id}', [Variation_OptionController::class, 'destroy'])->name('delete.variation-option.get');     
+    Route::get('/variation/{variation_id}/edit-variation-option/{id}', [Variation_OptionController::class, 'edit'])->name('edit.variation-option.get');
+    Route::post('/variation/{variation_id}/edit-variation-option/{id}', [Variation_OptionController::class, 'update'])->name('edit.variation-option.post');
 });
 
 Route::middleware(['auth.admin'])->prefix('admin')->group(function () {

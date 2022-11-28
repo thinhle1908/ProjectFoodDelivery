@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Variation_Option extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'variation_option';
+    protected $fillable =['value','variation_id'];
 }

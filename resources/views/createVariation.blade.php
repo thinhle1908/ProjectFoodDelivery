@@ -13,7 +13,7 @@
     <form method="POST">
         @csrf
         <div class="form-group">
-            <label for="name">Category Name</label>
+            <label for="name">Variation Name</label>
             <input type="text" class="form-control" id="name" placeholder="Product Name" name="name">
         </div>
 
@@ -25,7 +25,7 @@
             @endforeach
         </select>
         <br>
-        <button type="submit" class="float-right btn btn-primary">Create Category</button>
+        <button type="submit" class="float-right btn btn-primary">Create Variation</button>
     </form>
 </div>
 @stop

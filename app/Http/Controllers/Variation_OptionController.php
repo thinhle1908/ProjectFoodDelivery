@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Variation;
+use App\Models\Variation_Option;
 use Illuminate\Http\Request;
 
-class VariationController extends Controller
+class Variation_OptionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class VariationController extends Controller
      */
     public function index()
     {
-        $variations = Variation::all();
-        return view('viewVariation')->with('variations',$variations);
+        //
     }
 
     /**
@@ -26,8 +25,7 @@ class VariationController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('createVariation')->with('categories',$categories);
+        return view('createVariationOption');
     }
 
     /**
@@ -36,26 +34,20 @@ class VariationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$variation_id)
     {
         $validated = $request->validate([
-            'name' => 'required|string',
-            'category_id' => 'required|alpha_num'
+            'value' => 'required'
         ]);
-        $category = Category::find($request->category_id);
-        if(!$category){
+        $variation =  Variation::find($variation_id);
+        if(!$variation){
             return redirect()->back()->withErrors(['msg'=>'The category does not exist']);
         }
-
-        try {
-            Variation::create([
-                'name'=>$request->name,
-                'category_id'=>$request->category_id
-            ]);
-        } catch (\Exception $ex) {
-            return $ex;
-        }
-        return redirect(route('variation.get'))->withSuccess('Create Successfuly');
+        Variation_Option::create([
+            'value'=>$request->value,
+            'variation_id'=>$variation_id
+        ]);
+        return redirect('saler/variation/'.$variation_id.'/variation-option')->withSuccess('Create Sucessfuly');
     }
 
     /**
@@ -64,11 +56,10 @@ class VariationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($variation_id)
     {
-        $categories = Category::all();
-        $variation = Variation::find($id);
-        return view('editVariation')->with('categories',$categories)->with('variation',$variation);
+        $variation_options = Variation_Option::where('variation_id',$variation_id)->get();
+        return view('viewVariationOption')->with('variation_options',$variation_options);
     }
 
     /**
@@ -77,9 +68,10 @@ class VariationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($variation_id,$id)
     {
-        //
+        $variation_option = Variation_Option::find($id);
+        return view('editVariationOption')->with('variation_option',$variation_option);
     }
 
     /**
@@ -89,27 +81,23 @@ class VariationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$variation_id ,$id)
     {
         $validated = $request->validate([
-            'name' => 'required|string',
-            'category_id' => 'required|alpha_num'
+            'value' => 'required'
         ]);
-        $category = Category::find($request->category_id);
-        if(!$category){
-            return redirect()->back()->withErrors(['msg'=>'The category does not exist']);
+        $variation = Variation_Option::find($id);
+        if(!$variation){
+            return redirect()->back()->withErrors(['msg'=>'Varation does not exist']); 
         }
-        $variation = Variation::find($id);
         try {
             $variation->update([
-                'name'=>$request->name,
-                'category_id'=>$request->category_id
+                'value'=>$request->value
             ]);
         } catch (\Exception $ex) {
             return $ex;
         }
-        
-        return redirect(route('variation.get'))->withSuccess('Edit Successfuly');
+        return redirect('saler/variation/'.$variation_id.'/variation-option')->withSuccess('Create Sucessfuly');
     }
 
     /**
@@ -118,16 +106,16 @@ class VariationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($variation_id,$id)
     {
-        $variation = Variation::find($id);
-        if(!$variation){
+        $variation_option = Variation_Option::find($id);
+        if(!$variation_option){
             return redirect()->back()->withErrors(['msg'=>'Varation does not exist
             ']); 
         }
         try 
         {
-            $variation->delete();
+            $variation_option->delete();
         } catch (\Exception $ex) 
         {
             return $ex;

@@ -26,7 +26,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-            <a href="{{route('variation.create')}}"><button type="button" class="m-3 btn btn-primary">Create Variation</button></a>
+            <a href="create-variation-option"><button type="button" class="m-3 btn btn-primary">Create Variation</button></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,32 +34,24 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
+                            <th>Value</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
+                            <th>Value</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($variations as $variation)
+                        @foreach($variation_options as $variation_option)
                         <tr>
-                            <th>{{$variation->id}}</th>
-                            <th>{{$variation->name}}</th>
-                            <th>{{$variation->category->name}}</th>
-                            <th>{{$variation->created_at}}</th>
-                            <th>{{$variation->updated_at}}</th>
-                            <th><a href="variation/{{$variation->id}}/variation-option"><button type="button" class="btn btn-primary">View Option</button></a> <a href="edit-variation/{{$variation->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-variation/{{$variation->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
+                            <th>{{$variation_option->id}}</th>
+                            <th>{{$variation_option->value}}</th>
+                            
+                            <th><a href="edit-variation-option/{{$variation_option->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-variation-option/{{$variation_option->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
                         </tr>
                         @endforeach
                     </tbody>

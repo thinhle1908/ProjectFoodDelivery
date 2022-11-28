@@ -23,10 +23,11 @@
             <input type="text" class="form-control" id="name" placeholder="Product Name" name="name">
         </div>
 
-        <div class="form-group">
-            <label for="name">Category</label>
-            <input type="text" class="form-control" id="name" placeholder="Product Name" name="name">@foreach($categories as $category){{$category->name}} @endforeach
-        </div>
+        <select class="form-select selectpicker" multiple aria-label="multiple select example" name="categories[]">
+            @foreach($categories as $category)
+            <option value="{{$category->id}} ">{{$category->name}} </option>
+            @endforeach
+        </select>
 
         <div class="form-group">
             <label for="description">Description</label>

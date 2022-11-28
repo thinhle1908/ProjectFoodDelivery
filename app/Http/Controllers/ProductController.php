@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Product_Category;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -43,17 +44,26 @@ class ProductController extends Controller
         $validated = $request->validate([
             'image' => 'required|image',
             'name' => 'required',
-            'description' => 'required|string'
+            'description' => 'required|string',
+            'categories'=>'required|array'
         ]);
         //Move Image to forder and get name image
         $nameimg = $request->file('image')->hashName();
         request()->image->move(public_path('img/products'), $nameimg);
 
-        Product::create([
+        $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $nameimg
         ]);
+        
+        foreach($request->categories as $category){
+            Product_Category::create([
+                'product_id'=>$product->id,
+                'category_id'=>$category
+            ]);
+        }
+        
         return redirect(route('products.get'))->withSuccess('Create Product Success');
     }
 

@@ -19,13 +19,15 @@ class CheckAdmin
     {
         if (Auth::check())
         {
-             if(Auth::user()->role =='admin')
+             if(Auth::user()->role[0]->name =='admin')
              {
                  return $next($request);
              }
              else{
                 abort(403);
              }
+        }else{
+            return redirect(route('login.admin.get'));
         }
     }
 }

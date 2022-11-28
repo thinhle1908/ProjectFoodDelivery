@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Variation;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class VariationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-         return view('viewCategory')->with('categories',$categories);
+        $variations = Variation::all();
+        return view('viewVariation')->with('variations',$variations);
     }
 
     /**
@@ -25,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('createCategory');
+        $categories = Category::all();
+        return view('createVariation')->with('categories',$categories);
     }
 
     /**
@@ -37,14 +39,23 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable|string'
+            'name' => 'required|string',
+            'category_id' => 'required|alpha_num'
         ]);
-        Category::create([
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
-        return redirect(route('categories.get'))->withSuccess('Create Successfuly');
+        $category = Category::find($request->category_id);
+        if(!$category){
+            return redirect()->back()->withErrors(['msg'=>'The category does not exist']);
+        }
+
+        try {
+            Variation::create([
+                'name'=>$request->name,
+                'category_id'=>$request->category_id
+            ]);
+        } catch (\Exception $ex) {
+            return $ex;
+        }
+        return redirect(route('variation.get'))->withSuccess('Create Successfuly');
     }
 
     /**
@@ -55,8 +66,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::find($id);
-        return view('editCategory')->with('category',$category);
+        $categories = Category::all();
+        $variation = Variation::find($id);
+        return view('editVariation')->with('categories',$categories)->with('variation',$variation);
     }
 
     /**
@@ -79,24 +91,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable|string'
-        ]);
-        $category = Category::find($id);
-        if(!$category){
-            return redirect()->back()->withErrors(['msg'=>'The category does not exist']);
-        }
-        try {
-            $category->update([
-                'name'=>$request->name,
-                'description'=>$request->description
-            ]);
-        } catch (\Exception $ex) {
-            return $ex;
-        }
-        
-        return redirect(route('categories.get'))->withSuccess('Edit Successfuly');
+        //
     }
 
     /**
@@ -107,11 +102,18 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        if(!$category){
-            return redirect()->back()->withErrors(['msg'=>'The category does not exist']);
+        $variation = Variation::find($id);
+        if(!$variation){
+            return redirect()->back()->withErrors(['msg'=>'Varation does not exist
+            ']); 
         }
-        $category->delete();
+        try 
+        {
+            $variation->delete();
+        } catch (\Exception $ex) 
+        {
+            return $ex;
+        }
         return redirect()->back()->withSuccess('Delete Successfuly');
     }
 }

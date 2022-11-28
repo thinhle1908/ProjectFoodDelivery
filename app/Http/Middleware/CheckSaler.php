@@ -19,7 +19,7 @@ class CheckSaler
     {
         if (Auth::check())
         {
-             if(Auth::user()->role[0]->name =='saler')
+             if(Auth::user()->role[0]->name =='saler' || Auth::user()->role[0]->name =='admin')
              {
                  return $next($request);
              }

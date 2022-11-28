@@ -1,10 +1,10 @@
-@extends('layout.adminLayout')
+@extends('layout.salerLayout')
 @section('content')
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Categories</h1>
+    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
         For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
@@ -14,19 +14,10 @@
         {{Session::get('success')}}
     </div>
     @endif
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-            <a href="create-category"><button type="button" class="m-3 btn btn-primary">Create Category</button></a>
+            <a href="{{route('variation.create')}}"><button type="button" class="m-3 btn btn-primary">Create Variation</button></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -35,7 +26,9 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Created_at</th>
+                            <th>Updated_at</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -43,17 +36,21 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Created_at</th>
+                            <th>Updated_at</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($categories as $category)
+                        @foreach($variations as $variation)
                         <tr>
-                            <th>{{$category->id}}</th>
-                            <th>{{$category->name}}</th>
-                            <th>{{$category->description}}</th>
-                            <th><a href="edit-category/{{$category->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-category/{{$category->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
+                            <th>{{$variation->id}}</th>
+                            <th>{{$variation->name}}</th>
+                            <th>{{$variation->category->name}}</th>
+                            <th>{{$variation->created_at}}</th>
+                            <th>{{$variation->updated_at}}</th>
+                            <th><a href="edit-variation/{{$variation->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-variation/{{$variation->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
                         </tr>
                         @endforeach
                     </tbody>
@@ -64,6 +61,4 @@
 
 </div>
 <!-- /.container-fluid -->
-
-
 @stop

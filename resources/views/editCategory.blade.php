@@ -1,4 +1,4 @@
-@extends('layout.salerLayout')
+@extends('layout.adminLayout')
 @section('content')
 @if ($errors->any())
 <div class="alert alert-danger">

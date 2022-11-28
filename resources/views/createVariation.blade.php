@@ -1,4 +1,4 @@
-@extends('layout.adminLayout')
+@extends('layout.salerLayout')
 @section('content')
 @if ($errors->any())
 <div class="alert alert-danger">
@@ -17,10 +17,14 @@
             <input type="text" class="form-control" id="name" placeholder="Product Name" name="name">
         </div>
 
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" rows="3" placeholder="text..." name="description"></textarea>
-        </div>
+        <select class="form-select" aria-label="Default select example" name="category_id">
+        <option selected>Select a category</option>
+            @foreach($categories as $category)
+            
+            <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
+        <br>
         <button type="submit" class="float-right btn btn-primary">Create Category</button>
     </form>
 </div>

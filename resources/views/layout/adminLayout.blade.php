@@ -42,19 +42,14 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Products -->
+            <!-- Nav Item - Categories -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('products.get')}}">
+                <a class="nav-link" href="{{route('categories.get')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Products</span></a>
+                    <span>Categories</span></a>
             </li>
 
-            <!-- Nav Item - Variation -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('variation.get')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Variation</span></a>
-            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

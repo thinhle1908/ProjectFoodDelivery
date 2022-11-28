@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\VariationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -55,8 +56,7 @@ Route::middleware('auth.admin')->prefix('admin')->group(function () {
 });
 
 //Route saler
-Route::middleware(['auth.saler'])->prefix('saler')->group(function ()
-{
+Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     //Product
     Route::get('/products', [ProductController::class, 'index'])->name('products.get');
     Route::get('/delete-product/{id}', [ProductController::class, 'destroy'])->name('products.delete');
@@ -71,12 +71,21 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function ()
     Route::post('/create-category', [CategoryController::class, 'store'])->name('category.create.post');
     Route::get('/edit-category/{id}', [CategoryController::class, 'show'])->name('category.create.post');
     Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('category.create.post');
+    //Variation
+    Route::get('/variation', [VariationController::class, 'index'])->name('variation.get');     
+    Route::get('/create-variation', [VariationController::class, 'create'])->name('variation.create');
+    Route::post('/create-variation', [VariationController::class, 'store'])->name('variation.create.post');
+    Route::get('/delete-variation/{id}', [VariationController::class, 'destroy'])->name('variation.delete');
+    Route::get('/edit-variation/{id}', [VariationController::class, 'show'])->name('variation.create.post');
+    Route::post('/edit-variation/{id}', [VariationController::class, 'update'])->name('variation.create.post');
 });
 
-//Route user
-// Route::middleware('auth.user')->prefix('user')->group(function ()
-// {
-//     Route::get('/', function () {
-//         return view('welcome');
-//     });
-// });
+Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
+    //Category
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.get');
+    Route::get('/delete-category/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
+    Route::get('/create-category', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/create-category', [CategoryController::class, 'store'])->name('category.create.post');
+    Route::get('/edit-category/{id}', [CategoryController::class, 'show'])->name('category.create.post');
+    Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('category.create.post');
+});

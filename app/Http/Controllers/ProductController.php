@@ -75,8 +75,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        $categories = Category::all();
         $product = Product::find($id);
-        return view('editProduct')->with('product', $product);
+        $selected = false;
+        return view('editProduct')->with('product', $product)->with('categories',$categories)->with('selected',$selected);
     }
 
     /**

@@ -92,6 +92,7 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     Route::get('/product/{product_id}/items', [ItemController::class, 'show'])->name('item.get');
     Route::get('/product/{product_id}/create-item', [ItemController::class, 'create'])->name('create.item.get');
     Route::post('/product/{product_id}/create-item', [ItemController::class, 'store'])->name('create.item.post');
+    Route::get('/product/{product_id}/delete-item/{id}', [ItemController::class, 'destroy'])->name('create.item.post');
 });
 
 Route::middleware(['auth.admin'])->prefix('admin')->group(function () {

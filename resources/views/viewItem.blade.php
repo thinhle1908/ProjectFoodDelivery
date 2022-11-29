@@ -83,7 +83,7 @@
                             <th>{{$item->updated_at}}</th>
                             <th>{{$item->product_id}}</th>
                             <th>{{$item->discount_id}}</th>
-                            <th><a href="product/{{$item->id}}/items"><button type="button" class="btn btn-primary">View Item</button></a> <a href="edit-product/{{$item->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-product/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
+                            <th></a> <a href="edit-product/{{$item->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-item/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
                         </tr>
                         @endforeach
                     </tbody>

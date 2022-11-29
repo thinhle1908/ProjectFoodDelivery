@@ -10,6 +10,7 @@ use App\Models\Product_Category;
 use App\Models\Variation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ItemController extends Controller
 {
@@ -93,7 +94,7 @@ class ItemController extends Controller
         } catch (\Exception $ex) {
             return $ex;
         }
-        return redirect('saler/product/'.$product_id.'/items')->withSuccess('Create Sucessfuly');
+        return redirect('saler/product/' . $product_id . '/items')->withSuccess('Create Sucessfuly');
     }
 
     /**
@@ -137,8 +138,23 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($product_id, $id)
     {
-        //
+        $item = Item::find($id);
+        if (!$item) {
+            return redirect()->back()->withErrors(['msg' => 'Item does not exist
+            ']);
+        }
+        try {
+            $item_configuration = Item_Configuration::where('item_id', $id)->delete();
+            $item->delete();
+            $image_path = 'img/items/' . $item->image;  // Value is not URL but directory file path
+            if (File::exists($image_path)) {
+                File::delete($image_path);
+            }
+        } catch (\Exception $ex) {
+            return $ex;
+        }
+        return redirect()->back()->withSuccess('Delete Successfuly');
     }
 }

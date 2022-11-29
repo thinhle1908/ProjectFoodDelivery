@@ -90,6 +90,8 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     Route::post('/variation/{variation_id}/edit-variation-option/{id}', [Variation_OptionController::class, 'update'])->name('edit.variation-option.post');
     //Item 
     Route::get('/product/{product_id}/items', [ItemController::class, 'show'])->name('item.get');
+    Route::get('/product/{product_id}/create-item', [ItemController::class, 'create'])->name('create.item.get');
+    Route::post('/product/{product_id}/create-item', [ItemController::class, 'store'])->name('create.item.post');
 });
 
 Route::middleware(['auth.admin'])->prefix('admin')->group(function () {

@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discount;
+use App\Models\Item;
+use App\Models\Item_Configuration;
+use App\Models\Product;
+use App\Models\Product_Category;
+use App\Models\Variation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -21,9 +28,21 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($product_id)
     {
-        //
+        $product_category = Product_Category::where('product_id', $product_id)->get();
+        try {
+            if (!$product_category[0]->category_id) {
+            }
+        } catch (\Throwable $th) {
+            abort(404);
+        }
+        $discounts = Discount::all();
+        $variations = Variation::where('category_id', $product_category[0]->category_id)->get();
+
+
+
+        return view('createItem')->with('variations', $variations)->with('discounts', $discounts);
     }
 
     /**
@@ -32,9 +51,49 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $product_id)
     {
-        //
+
+        $validated = $request->validate([
+            'image' => 'required|image',
+            'sku' => 'required',
+            'price' => 'required',
+            'sale_price' => 'required',
+            'quantity' => 'required',
+            'sold' => 'required',
+            'variation_option' => 'required|array',
+            'discount' => 'required'
+        ]);
+        //Move Image to forder and get name image
+        $nameimg = $request->file('image')->hashName();
+        request()->image->move(public_path('img/items'), $nameimg);
+        try {
+            //code...
+
+            $item = Item::create([
+                'image' => $nameimg,
+                'sku' => $request->sku,
+                'price' => $request->price,
+                'sale_price' => $request->sale_price,
+                'quantity' => $request->quantity,
+                'sold' => $request->sold,
+                'created_by' => Auth::id(),
+                'updated_by' => Auth::id(),
+                'product_id' => $product_id,
+                'discount_id' => $request->discount,
+
+            ]);
+
+            foreach ($request->variation_option as $variation_option) {
+                Item_Configuration::create([
+                    'item_id' => $item->id,
+                    'variation_option_id' => $variation_option
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return $ex;
+        }
+        return redirect('saler/product/'.$product_id.'/items')->withSuccess('Create Sucessfuly');
     }
 
     /**
@@ -45,7 +104,8 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        return view('viewItem');
+        $items = Item::where('product_id', $id)->get();
+        return view('viewItem')->with('items', $items);
     }
 
     /**

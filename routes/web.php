@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Variation_OptionController;
 use App\Http\Controllers\VariationController;
@@ -74,19 +75,21 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     Route::get('/edit-category/{id}', [CategoryController::class, 'show'])->name('category.create.post');
     Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('category.create.post');
     //Variation
-    Route::get('/variation', [VariationController::class, 'index'])->name('variation.get');     
+    Route::get('/variation', [VariationController::class, 'index'])->name('variation.get');
     Route::get('/create-variation', [VariationController::class, 'create'])->name('variation.create');
     Route::post('/create-variation', [VariationController::class, 'store'])->name('variation.create.post');
     Route::get('/delete-variation/{id}', [VariationController::class, 'destroy'])->name('variation.delete');
     Route::get('/edit-variation/{id}', [VariationController::class, 'show'])->name('variation.create.post');
     Route::post('/edit-variation/{id}', [VariationController::class, 'update'])->name('variation.create.post');
-      //Variation Option
-    Route::get('/variation/{variation_id}/variation-option/', [Variation_OptionController::class, 'show'])->name('variation-option.get');    
-    Route::get('/variation/{variation_id}/create-variation-option/', [Variation_OptionController::class, 'create'])->name('create.variation-option.get');    
-    Route::post('/variation/{variation_id}/create-variation-option/', [Variation_OptionController::class, 'store'])->name('create.variation-option.post');   
-    Route::get('/variation/{variation_id}/delete-variation-option/{id}', [Variation_OptionController::class, 'destroy'])->name('delete.variation-option.get');     
+    //Variation Option
+    Route::get('/variation/{variation_id}/variation-option/', [Variation_OptionController::class, 'show'])->name('variation-option.get');
+    Route::get('/variation/{variation_id}/create-variation-option/', [Variation_OptionController::class, 'create'])->name('create.variation-option.get');
+    Route::post('/variation/{variation_id}/create-variation-option/', [Variation_OptionController::class, 'store'])->name('create.variation-option.post');
+    Route::get('/variation/{variation_id}/delete-variation-option/{id}', [Variation_OptionController::class, 'destroy'])->name('delete.variation-option.get');
     Route::get('/variation/{variation_id}/edit-variation-option/{id}', [Variation_OptionController::class, 'edit'])->name('edit.variation-option.get');
     Route::post('/variation/{variation_id}/edit-variation-option/{id}', [Variation_OptionController::class, 'update'])->name('edit.variation-option.post');
+    //Item 
+    Route::get('/product/{product_id}/items', [ItemController::class, 'show'])->name('item.get');
 });
 
 Route::middleware(['auth.admin'])->prefix('admin')->group(function () {

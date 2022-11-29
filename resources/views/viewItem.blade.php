@@ -34,22 +34,29 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Description</th>
+                            <th>Sku</th>
                             <th>Image</th>
+                            <th>Price</th>
+                            <th>Sale_price</th>
+                            <th>Quantity</th>
+                            <th>Sold</th>
+                            <th>Created_by</th>
+                            <th>Updated_by</th>
                             <th>Created_at</th>
                             <th>Updated_at</th>
+                            <th>Product_id</th>
+                            <th>Discount_id</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Description</th>
+                            <th>Sku</th>
                             <th>Image</th>
+                            <th>Price</th>
+                            <th>Sale_price</th>
+
                             <th>Created_at</th>
                             <th>Updated_at</th>
                             <th>Action</th>

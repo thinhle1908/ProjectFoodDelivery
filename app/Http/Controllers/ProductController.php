@@ -77,8 +77,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $product = Product::find($id);
-        $selected = false;
-        return view('editProduct')->with('product', $product)->with('categories',$categories)->with('selected',$selected);
+        return view('editProduct')->with('product', $product)->with('categories',$categories);
     }
 
     /**
@@ -104,7 +103,8 @@ class ProductController extends Controller
         $validated = $request->validate([
             'image' => 'image',
             'name' => 'required',
-            'description' => 'required|string'
+            'description' => 'required|string',
+            'categories'=>'required|array'
         ]);
         $product = Product::find($id);
         if (!$request->image) {
@@ -112,6 +112,16 @@ class ProductController extends Controller
                 'name' => $request->name,
                 'description' => $request->description
             ]);
+
+            $product_categories = Product_Category::where('product_id',$id)->delete();
+
+            foreach($request->categories as $category){
+                Product_Category::create([
+                    'product_id'=>$product->id,
+                    'category_id'=>$category
+                ]);
+            }
+
         } else {
             $image_path = 'img/products/' . $product->image;  // Value is not URL but directory file path
             if (File::exists($image_path)) {
@@ -120,6 +130,16 @@ class ProductController extends Controller
             //Move Image to forder and get name image
             $nameimg = $request->file('image')->hashName();
             request()->image->move(public_path('img/products'), $nameimg);
+
+            $product_categories = Product_Category::where('product_id',$id)->delete();
+
+            foreach($request->categories as $category){
+                Product_Category::create([
+                    'product_id'=>$product->id,
+                    'category_id'=>$category
+                ]);
+            }
+
             $product->update([
                 'image' => $nameimg,
                 'name' => $request->name,
@@ -143,6 +163,7 @@ class ProductController extends Controller
         if (File::exists($image_path)) {
             File::delete($image_path);
         }
+        $product_categories = Product_Category::where('product_id',$product->id)->delete();
 
         $product->delete();
         return redirect(route('products.get'))->withSuccess('Delete Product Success');

@@ -115,9 +115,22 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($product_id,$id)
     {
-        //
+        $item = Item::find($id);
+        $product_category = Product_Category::where('product_id', $product_id)->get();
+        try {
+            if (!$product_category[0]->category_id) {
+            }
+        } catch (\Throwable $th) {
+            abort(404);
+        }
+        $discounts = Discount::all();
+        $variations = Variation::where('category_id', $product_category[0]->category_id)->get();
+
+
+
+        return view('editItem')->with('variations', $variations)->with('discounts', $discounts)->with('item',$item);
     }
 
     /**

@@ -115,7 +115,7 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($product_id,$id)
+    public function edit($product_id, $id)
     {
         $item = Item::find($id);
         $product_category = Product_Category::where('product_id', $product_id)->get();
@@ -130,7 +130,7 @@ class ItemController extends Controller
 
 
 
-        return view('editItem')->with('variations', $variations)->with('discounts', $discounts)->with('item',$item);
+        return view('editItem')->with('variations', $variations)->with('discounts', $discounts)->with('item', $item);
     }
 
     /**
@@ -140,9 +140,58 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $product_id, $id)
     {
-        //
+        $validated = $request->validate([
+            'image' => 'image',
+            'sku' => 'required',
+            'price' => 'required',
+            'sale_price' => 'required',
+            'quantity' => 'required',
+            'sold' => 'required',
+            'variation_option' => 'required|array',
+            'discount' => 'required'
+        ]);
+
+        $item = Item::find($id);
+        $nameimg = $item->image;
+        if ($request->image) {
+            $image_path = 'img/items/' . $item->image;  // Value is not URL but directory file path
+            if (File::exists($image_path)) {
+                File::delete($image_path);
+            }
+            //Move Image to forder and get name image
+            $nameimg = $request->file('image')->hashName();
+            request()->image->move(public_path('img/items'), $nameimg);
+        }
+
+        $item_configuration = Item_Configuration::where('item_id', $id)->delete();
+        try {
+            //code...
+
+            $item->update([
+                'image' => $nameimg,
+                'sku' => $request->sku,
+                'price' => $request->price,
+                'sale_price' => $request->sale_price,
+                'quantity' => $request->quantity,
+                'sold' => $request->sold,
+                'updated_by' => Auth::id(),
+                'product_id' => $product_id,
+                'discount_id' => $request->discount,
+
+            ]);
+
+            foreach ($request->variation_option as $variation_option) {
+                Item_Configuration::create([
+                    'item_id' => $item->id,
+                    'variation_option_id' => $variation_option
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return $ex;
+        }
+        return redirect('saler/product/' . $product_id . '/items')->withSuccess('Edit Sucessfuly');
     }
 
     /**

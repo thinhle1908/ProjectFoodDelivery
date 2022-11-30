@@ -41,9 +41,8 @@
      
         <div class="form-group">
             <label for="name">Sold</label>
-            <input type="text" class="form-control" id="name" placeholder="Sold" name="sold"  value="{{$item->sku}}">
+            <input type="text" class="form-control" id="name" placeholder="Sold" name="sold"  value="{{$item->sold}}">
         </div>
-        {{var_dump($item->item_configuration[0]->value)}}
         @foreach($variations as $variation)
 
         <div class="form-group">
@@ -85,7 +84,7 @@
 
 
 
-        <button type="submit" class="float-right btn btn-primary">Create Item</button>
+        <button type="submit" class="float-right btn btn-primary">Edit Item</button>
     </form>
 </div>
 </div>

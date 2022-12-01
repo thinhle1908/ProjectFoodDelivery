@@ -25,6 +25,21 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+Route::get('/items', function () {
+    return view('items');
+})->name('items');
+Route::get('/item-details', function () {
+    return view('itemDetails');
+})->name('itemDetails');
+Route::get('/cart', function () {
+    return view('cart');
+})->name('cart');
+Route::get('/checkout', function () {
+    return view('checkout');
+})->name('checkout');
 
 //Authentication User
 //Register

@@ -30,6 +30,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             VariationSeeder::class
         ]);
+        $this->call([
+            DiscountSeeder::class
+        ]);
         
     }
 }

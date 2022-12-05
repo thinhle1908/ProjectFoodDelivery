@@ -29,15 +29,9 @@ Route::get('/item-details/{id}', [HomeController::class, 'itemDetails'])->name('
 Route::get('/about', function () {
     return view('about');
 })->name('about');
-Route::get('/items', function () {
-    return view('items');
-})->name('items');
-Route::get('/item-details', function () {
-    return view('itemDetails');
-})->name('itemDetails');
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+
+
+
 Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout');
@@ -121,4 +115,8 @@ Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
     Route::post('/create-category', [CategoryController::class, 'store'])->name('category.create.post');
     Route::get('/edit-category/{id}', [CategoryController::class, 'show'])->name('category.create.post');
     Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('category.create.post');
+});
+Route::middleware(['auth.user'])->group(function () {
+    Route::get('/cart', [HomeController::class, 'cart'])->name('item.details');
+
 });

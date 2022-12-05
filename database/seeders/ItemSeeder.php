@@ -26,7 +26,7 @@ class ItemSeeder extends Seeder
             'updated_by' => 2,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'product_id' => 5,
+            'product_id' => 1,
             'discount_id' => 1,
 
         ]);
@@ -41,7 +41,7 @@ class ItemSeeder extends Seeder
             'updated_by' => 2,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'product_id' => 5,
+            'product_id' => 1,
             'discount_id' => 1,
 
         ]);
@@ -56,7 +56,7 @@ class ItemSeeder extends Seeder
             'updated_by' => 2,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'product_id' => 5,
+            'product_id' => 1,
             'discount_id' => 1,
 
         ]);
@@ -71,7 +71,7 @@ class ItemSeeder extends Seeder
             'updated_by' => 2,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'product_id' => 5,
+            'product_id' => 1,
             'discount_id' => 1,
 
         ]);
@@ -86,7 +86,7 @@ class ItemSeeder extends Seeder
             'updated_by' => 2,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'product_id' => 5,
+            'product_id' => 1,
             'discount_id' => 1,
 
         ]);
@@ -101,7 +101,7 @@ class ItemSeeder extends Seeder
             'updated_by' => 2,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'product_id' => 5,
+            'product_id' => 1,
             'discount_id' => 1,
 
         ]);
@@ -116,7 +116,7 @@ class ItemSeeder extends Seeder
             'updated_by' => 2,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'product_id' => 5,
+            'product_id' => 1,
             'discount_id' => 1,
 
         ]);
@@ -131,7 +131,7 @@ class ItemSeeder extends Seeder
             'updated_by' => 2,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'product_id' => 5,
+            'product_id' => 1,
             'discount_id' => 1,
 
         ]);

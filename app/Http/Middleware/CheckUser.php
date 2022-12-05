@@ -17,15 +17,10 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check())
-        {
-             if(Auth::user()->role =='admin')
-             {
-                 return $next($request);
-             }
-             else{
-                abort(403);
-             }
+        if (Auth::check()) {
+            return $next($request);
+        } else {
+            return redirect(route('login.user.get'));
         }
     }
 }

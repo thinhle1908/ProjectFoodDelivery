@@ -12,12 +12,18 @@ class HomeController extends Controller
         $items = Item::all();
         return view('home')->with('items',$items);
     }
+
     public function itemDetails($id)
     {
         $item = Item::find($id);
         if(!$item){
             return abort(404);
         }
-        return view('homeDetails')->with('item',$item);
+        return view('itemDetails')->with('item',$item);
+    }
+
+    public function cart()
+    {
+        
     }
 }

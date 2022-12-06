@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProductController;
@@ -31,11 +32,6 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-
-
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('checkout');
 
 //Authentication User
 //Register
@@ -122,4 +118,5 @@ Route::middleware(['auth.user'])->group(function () {
     Route::post('/add-to-cart', [CartController::class, 'addCart'])->name('addCart');
     Route::patch('/update-cart', [CartController::class, 'updateCart'])->name('updateCart');
     Route::delete('/delete-cart', [CartController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('/checkout', [CheckOutController::class, 'index'])->name('checkout');
 });

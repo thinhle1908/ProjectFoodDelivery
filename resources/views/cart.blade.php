@@ -30,6 +30,7 @@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
+                    @if(isset($cartItem))
                     @foreach($cartItem as $caritem)
                     <tr data-id={{$caritem->item[0]->id}}>
                         <td class="align-middle"><img src="img/items/{{$caritem->item[0]->image}}" alt="" style="width: 50px;"> {{$caritem->item[0]->sku}}</td>
@@ -53,6 +54,7 @@
                         <td class="align-middle"><button class="btn btn-sm btn-danger btn-delete"><i class="fa fa-times"></i></button></td>
                     </tr>
                     @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -69,8 +71,10 @@
             <div class="bg-light p-30 mb-5">
                 <div class="border-bottom pb-2">
                     <div class="d-flex justify-content-between mb-3">
+                        @if(isset($totalPrice))
                         <h6>Subtotal</h6>
                         <h6>${{$totalPrice}}</h6>
+                        @endif
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Shipping</h6>
@@ -80,9 +84,11 @@
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
-                        <h5>${{$totalPrice}}</h5>
+                        @if(isset($totalPrice))
+                        <h5>{{$totalPrice}}</h5>
+                        @endif
                     </div>
-                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                    <a href="{{route('checkout')}}"><button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button></a>
                 </div>
             </div>
         </div>

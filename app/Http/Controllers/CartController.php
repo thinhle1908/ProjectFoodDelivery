@@ -12,6 +12,9 @@ class CartController extends Controller
 {
     public function cart()
     {
+        if(!Auth::user()->cart){
+            return view('cart');
+        }
         $cart_id = (Auth::user()->cart->id);
         $cartItem = Shopping_CartItem::where('cart_id', $cart_id)->get();
         $totalPrice=0;

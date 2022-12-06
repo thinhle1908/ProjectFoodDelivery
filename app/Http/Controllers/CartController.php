@@ -13,8 +13,12 @@ class CartController extends Controller
     public function cart()
     {
         $cart_id = (Auth::user()->cart->id);
-        $cartitem = Shopping_CartItem::where('cart_id', $cart_id)->get();
-        return view('cart')->with('cartItem', $cartitem);
+        $cartItem = Shopping_CartItem::where('cart_id', $cart_id)->get();
+        $totalPrice=0;
+        foreach($cartItem as $caritem){
+           $totalPrice+= number_format($caritem->item[0]->price * $caritem->qty);
+        }
+        return view('cart')->with('cartItem', $cartItem)->with('totalPrice',$totalPrice);
     }
     public function addCart(Request $request)
     {

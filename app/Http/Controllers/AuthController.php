@@ -117,7 +117,7 @@ class AuthController extends Controller
             'password' => 'required|min:6|same:password_confirm',
             'password_confirm' => 'required|min:6',
         ]);
-        $role = 0;
+        $role = 3;
         if ($page_redirect == "/login-admin") {
             $role = 1;
         }

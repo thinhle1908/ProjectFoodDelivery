@@ -44,8 +44,23 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
-                            <button class="dropdown-item" type="button">Sign up</button>
+                            @if(Auth::check())
+                            
+                            <button class="dropdown-item" type="button">Welcome {{Auth::user()->firstname}} {{Auth::user()->lastname}}</button>
+                            <a href="/logout"><button class="dropdown-item" type="button">Logout</button></a> 
+                            @if(Auth::user()->role[0]->name=='user')
+                            <a href="/order"><button class="dropdown-item" type="button">Order</button></a> 
+                            @endif
+                            @if(Auth::user()->role[0]->name=='saler')
+                            <a href="/saler/products"><button class="dropdown-item" type="button">Products</button></a> 
+                            @endif
+                            @if(Auth::user()->role[0]->name=='admin')
+                            <a href="/admin/categories"><button class="dropdown-item" type="button">Categories</button></a>
+                            @endif
+                          @else
+                           <a href="/login"><button class="dropdown-item" type="button">Sign in as User</button></a> 
+                            <a href="/login-saler"><button class="dropdown-item" type="button">Sign in as Saler</button></a>
+                            @endif
                         </div>
                     </div>
                     <div class="btn-group mx-2">

@@ -33,6 +33,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DiscountSeeder::class
         ]);
+        $this->call([
+            OrderStatus::class
+        ]);
         
     }
 }

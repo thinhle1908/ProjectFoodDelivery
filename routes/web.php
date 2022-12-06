@@ -104,6 +104,7 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     Route::get('/product/{product_id}/delete-item/{id}', [ItemController::class, 'destroy'])->name('create.item.post');
     Route::get('/product/{product_id}/edit-item/{id}', [ItemController::class, 'edit'])->name('edit.item.get');
     Route::post('/product/{product_id}/edit-item/{id}', [ItemController::class, 'update'])->name('edit.item.post');
+    
 });
 
 Route::middleware(['auth.admin'])->prefix('admin')->group(function () {

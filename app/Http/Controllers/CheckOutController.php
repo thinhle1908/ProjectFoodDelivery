@@ -19,11 +19,12 @@ class CheckOutController extends Controller
         {
             return redirect(route('home'));
         }
-        $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->get();
+        $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->first();
         if(!$cartItem)
         {
             return redirect(route('home'));
         }
+        $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->get();
         $totalPrice=0;
         foreach($cartItem as $caritem){
            $totalPrice+= number_format($caritem->item[0]->price * $caritem->qty);
@@ -76,6 +77,5 @@ class CheckOutController extends Controller
             'user_id'=>Auth::user()->id,
         ]);
         $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->delete();
-        
     }
 }

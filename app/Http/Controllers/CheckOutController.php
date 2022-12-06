@@ -16,7 +16,15 @@ class CheckOutController extends Controller
         {
             return redirect(route('home'));
         }
-        
-        
+        $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->get();
+        if(!$cartItem)
+        {
+            return redirect(route('home'));
+        }
+        $totalPrice=0;
+        foreach($cartItem as $caritem){
+           $totalPrice+= number_format($caritem->item[0]->price * $caritem->qty);
+        }
+        return view('checkout')->with('cartItem', $cartItem)->with('totalPrice',$totalPrice);
     }
 }

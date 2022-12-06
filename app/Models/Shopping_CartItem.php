@@ -11,4 +11,9 @@ class Shopping_CartItem extends Model
     public $timestamps = false;
     protected $table = 'shopping_cartitem';
     protected $fillable = ['qty','cart_id','item_id'];
+
+    public function item()
+    {
+        return $this->hasMany(Item::class,'id','item_id');
+    }
 }

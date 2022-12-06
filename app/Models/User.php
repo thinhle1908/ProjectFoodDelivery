@@ -50,8 +50,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
     }
-    public function shopping_cart()
+    public function cart()
     {
-        return $this->hasOne(Shopping_Cart::class, 'role_id', 'user_id', 'id');
+        return $this->hasOne(Shopping_Cart::class);
     }
 }

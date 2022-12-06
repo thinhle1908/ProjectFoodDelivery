@@ -12,7 +12,9 @@ class CartController extends Controller
 {
     public function cart()
     {
-        return view('cart');
+        $cart_id =(Auth::user()->cart->id);
+        $cartitem = Shopping_CartItem::where('cart_id',$cart_id)->get();
+        return view('cart')->with('cartItem',$cartitem);
     }
     public function addCart(Request $request)
     {

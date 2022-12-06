@@ -77,5 +77,7 @@ class CheckOutController extends Controller
             'user_id'=>Auth::user()->id,
         ]);
         $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->delete();
+        
+        return redirect(route('order'))->withSuccess('Order Successfully');
     }
 }

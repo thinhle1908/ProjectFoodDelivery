@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Variation_OptionController;
 use App\Http\Controllers\VariationController;
@@ -31,6 +32,7 @@ Route::get('/item-details/{id}', [HomeController::class, 'itemDetails'])->name('
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
 
 
 //Authentication User
@@ -120,4 +122,5 @@ Route::middleware(['auth.user'])->group(function () {
     Route::delete('/delete-cart', [CartController::class, 'deleteCart'])->name('deleteCart');
     Route::get('/checkout', [CheckOutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [CheckOutController::class, 'checkOut'])->name('post.checkout');
+    Route::get('/order', [OrderController::class, 'index'])->name('order');
 });

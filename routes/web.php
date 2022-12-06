@@ -119,4 +119,5 @@ Route::middleware(['auth.user'])->group(function () {
     Route::patch('/update-cart', [CartController::class, 'updateCart'])->name('updateCart');
     Route::delete('/delete-cart', [CartController::class, 'deleteCart'])->name('deleteCart');
     Route::get('/checkout', [CheckOutController::class, 'index'])->name('checkout');
+    Route::post('/checkout', [CheckOutController::class, 'checkOut'])->name('post.checkout');
 });

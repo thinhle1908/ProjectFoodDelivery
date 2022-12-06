@@ -120,4 +120,6 @@ Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
 Route::middleware(['auth.user'])->group(function () {
     Route::get('cart', [CartController::class, 'cart'])->name('cart');
     Route::post('/add-to-cart', [CartController::class, 'addCart'])->name('addCart');
+    Route::patch('/update-cart', [CartController::class, 'updateCart'])->name('updateCart');
+    Route::delete('/delete-cart', [CartController::class, 'deleteCart'])->name('deleteCart');
 });

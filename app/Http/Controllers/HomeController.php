@@ -21,9 +21,4 @@ class HomeController extends Controller
         }
         return view('itemDetails')->with('item',$item);
     }
-
-    public function cart()
-    {
-        
-    }
 }

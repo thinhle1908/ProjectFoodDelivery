@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
     <link href="{{asset('home/img/favicon.ico')}}" rel="icon">
@@ -78,7 +79,7 @@
         </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
-                <a href="{{route('index')}}" class="text-decoration-none">
+                <a href="{{route('home')}}" class="text-decoration-none">
                     <span class="h1 text-uppercase text-primary bg-dark px-2">Food</span>
                     <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Wisdom</span>
                 </a>
@@ -162,7 +163,7 @@
                                 <i class="fas fa-heart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="" class="btn px-0 ml-3">
+                            <a href="{{route('cart')}}" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
@@ -250,7 +251,7 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+    
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -264,6 +265,8 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('home/js/main.js')}}"></script>
+
+    @yield('script')
 </body>
 
 </html>

@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('shopping_cartitem', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('qty');
             $table->integer('cart_id')->unsigned();
             $table->foreign('cart_id')->references('id')->on('shopping_cart');
             $table->foreignId('item_id')->constrained('item','id');
+            
             
         });
     }

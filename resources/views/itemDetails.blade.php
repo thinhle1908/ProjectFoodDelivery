@@ -17,7 +17,7 @@
 
 <!-- Shop Detail Start -->
 <div class="container-fluid pb-5">
-    <div class="row px-xl-5">
+    <div class="row px-xl-5 product_data">
         <div class="col-lg-5 mb-30">
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner bg-light">
@@ -101,6 +101,7 @@
                         </div>
                     </form>
                 </div>
+                <input type="hidden" value="{{$item->id}}" class="prod_id">
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
@@ -108,14 +109,14 @@
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
-                        <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
+                        <input type="text" class="form-control bg-secondary border-0 text-center qty-input" value="1">
                         <div class="input-group-btn">
                             <button class="btn btn-primary btn-plus">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
+                    <button class="btn-add-to-cart btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
                         Cart</button>
                 </div>
                 <div class="d-flex pt-2">
@@ -251,4 +252,30 @@
 
 
 
+@stop
+
+@section('script')
+<script>
+    $('.btn-add-to-cart').click(function(e) {
+        e.preventDefault();
+        var product_id = $(this).closest('.product_data').find('.prod_id').val();
+        var product_qty = $(this).closest('.product_data').find('.qty-input').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            method: "POST",
+            url: "/add-to-cart",
+            data: {
+                'product_id': product_id,
+                'product_qty': product_qty
+            },
+            success: function(response) {
+                alert(response.status);
+            }
+        });
+    });
+</script>
 @stop

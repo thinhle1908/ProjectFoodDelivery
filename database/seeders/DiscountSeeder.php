@@ -17,13 +17,10 @@ class DiscountSeeder extends Seeder
     {
         DB::table('discount')->insert([
             'name' => 'test_discount',
-            'discount_percent'=> 5,
-            'active'=>1,
-            'created_at'=>date("Y-m-d H:i:s"),
-            'updated_at'=>date("Y-m-d H:i:s"),
-        ]);
-        $this->call([
-            VariationSeeder::class
+            'discount_percent' => 5,
+            'active' => 1,
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
         ]);
     }
 }

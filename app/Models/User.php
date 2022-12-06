@@ -48,6 +48,10 @@ class User extends Authenticatable
     ];
     public function role()
     {
-        return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id',);
+        return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
+    }
+    public function shopping_cart()
+    {
+        return $this->hasOne(Shopping_Cart::class, 'role_id', 'user_id', 'id');
     }
 }

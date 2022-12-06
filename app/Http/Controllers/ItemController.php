@@ -105,7 +105,7 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        $items = Item::where('product_id', $id)->get();
+        $items = Item::where('product_id', $id)->where('created_by',Auth::user()->id)->get();
         return view('viewItem')->with('items', $items);
     }
 

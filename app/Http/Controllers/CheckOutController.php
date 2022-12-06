@@ -68,12 +68,14 @@ class CheckOutController extends Controller
                 'total'=>$caritem->item[0]->price * $caritem->qty,
                 'order_id'=>$order->id,
             ]);
+
         }
         Transaction::create([
             'order_id'=>$order->id,
             'status_id'=>1,
             'user_id'=>Auth::user()->id,
         ]);
-      
+        $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->delete();
+        
     }
 }

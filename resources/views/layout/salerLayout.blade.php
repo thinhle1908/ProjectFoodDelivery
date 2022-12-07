@@ -55,6 +55,12 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Variation</span></a>
             </li>
+             <!-- Nav Item - Order -->
+             <li class="nav-item">
+                <a class="nav-link" href="{{route('saler.orders')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Order</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

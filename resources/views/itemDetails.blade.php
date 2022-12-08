@@ -36,7 +36,7 @@
 
         <div class="col-lg-7 h-auto mb-30">
             <div class="h-100 bg-light p-30">
-                <h3>{{$item->sku}}</h3>
+                <h3>{{$item->product->name}}@foreach($item->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}})  @endforeach</h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>

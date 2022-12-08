@@ -48,6 +48,21 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Categories</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="orders">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Orders</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="status">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Status</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="discount">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Discount</span></a>
+            </li>
 
 
 

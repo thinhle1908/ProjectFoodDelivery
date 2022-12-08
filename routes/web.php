@@ -4,11 +4,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckOutController;
+use App\Http\Controllers\DiscountAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderSalerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StatusAdminController;
 use App\Http\Controllers\Variation_OptionController;
 use App\Http\Controllers\VariationController;
 use App\Models\Variation_Option;
@@ -126,6 +129,10 @@ Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
     Route::post('/create-category', [CategoryController::class, 'store'])->name('category.create.post');
     Route::get('/edit-category/{id}', [CategoryController::class, 'show'])->name('category.create.post');
     Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('category.create.post');
+    Route::get('orders',[OrderAdminController::class,'index'])->name('order.admin');
+    Route::get('status',[StatusAdminController::class,'index'])->name('status.admin');
+    Route::get('discount',[DiscountAdminController::class,'index'])->name('discount.admin');
+    
 });
 Route::middleware(['auth.user'])->group(function () {
     Route::get('cart', [CartController::class, 'cart'])->name('cart');

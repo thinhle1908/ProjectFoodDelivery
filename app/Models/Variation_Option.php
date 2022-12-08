@@ -11,4 +11,9 @@ class Variation_Option extends Model
     public $timestamps = false;
     protected $table = 'variation_option';
     protected $fillable =['value','variation_id'];
+
+    public function variation()
+    {
+        return $this->hasOne(Variation::class,'id','variation_id');
+    }
 }

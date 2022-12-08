@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\DiscountAdminController;
+use App\Http\Controllers\DiscountSalerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderAdminController;
@@ -116,7 +117,7 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     Route::get('/orders',[OrderSalerController::class,'index'])->name('saler.orders');
     Route::get('/order-details/{id}',[OrderSalerController::class,'showOrderDetails'])->name('saler.order-details');
     //Discount
-    Route::get('discount',[DiscountAdminController::class,'index'])->name('discount.saler');
+    Route::get('discount',[DiscountSalerController::class,'index'])->name('discount.saler');
     
 });
 

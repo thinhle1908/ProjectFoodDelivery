@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/product-details/{id}', [HomeController::class, 'productDetails'])->name('product.details');
 Route::get('/item-details/{id}', [HomeController::class, 'itemDetails'])->name('item.details');
 
 

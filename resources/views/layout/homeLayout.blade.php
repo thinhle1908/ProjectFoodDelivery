@@ -174,7 +174,7 @@
                             @if(Auth::check())
                             <a href="{{route('cart')}}" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"></span>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">@if(isset(Auth::user()->cart)) {{Auth::user()->cart->cartItem->count()}} @else 0 @endif </span>
                             </a>
                             @else
                             <a href="/login" class="btn px-0 ml-3">

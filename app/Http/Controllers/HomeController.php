@@ -29,4 +29,9 @@ class HomeController extends Controller
         }
         return view('itemDetails')->with('item',$item);
     }
+    public function products()
+    {
+        $products = Product::all();
+        return view('allProduct')->with('products',$products);
+    }
 }

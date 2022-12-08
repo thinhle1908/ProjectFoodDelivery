@@ -163,8 +163,8 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="/" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Products</a>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="/products" class="nav-item nav-link">Products</a>
+                            <a href="" class="nav-item nav-link">Store</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">

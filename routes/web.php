@@ -115,6 +115,8 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     //Order
     Route::get('/orders',[OrderSalerController::class,'index'])->name('saler.orders');
     Route::get('/order-details/{id}',[OrderSalerController::class,'showOrderDetails'])->name('saler.order-details');
+    //Discount
+    Route::get('discount',[DiscountAdminController::class,'index'])->name('discount.saler');
     
 });
 
@@ -129,8 +131,11 @@ Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
     Route::post('/create-category', [CategoryController::class, 'store'])->name('category.create.post');
     Route::get('/edit-category/{id}', [CategoryController::class, 'show'])->name('category.create.post');
     Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('category.create.post');
+    //Order
     Route::get('orders',[OrderAdminController::class,'index'])->name('order.admin');
+    //Status
     Route::get('status',[StatusAdminController::class,'index'])->name('status.admin');
+    //Discount
     Route::get('discount',[DiscountAdminController::class,'index'])->name('discount.admin');
     
 });

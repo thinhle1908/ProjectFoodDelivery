@@ -61,6 +61,12 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Order</span></a>
             </li>
+            <!-- Nav Item - Order -->
+            <li class="nav-item">
+                <a class="nav-link" href="discount">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Discount</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

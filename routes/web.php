@@ -33,6 +33,9 @@ Route::get('/item-details/{id}', [HomeController::class, 'itemDetails'])->name('
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+Route::get('admin/', function () {
+    return view('adminDashboard');
+})->name('adminDashBoard');
 
 
 

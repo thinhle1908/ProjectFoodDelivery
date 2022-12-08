@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product_Category;
+use App\Models\Variation;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -110,6 +112,14 @@ class CategoryController extends Controller
         $category = Category::find($id);
         if(!$category){
             return redirect()->back()->withErrors(['msg'=>'The category does not exist']);
+        }
+        $product_categroy = Product_Category::where('category_id',$id)->first();
+        if($product_categroy){
+            return redirect()->back()->withErrors(['msg'=>'Can not delete a category with products']);
+        }
+        $variation = Variation::where('category_id',$id)->first();
+        if($variation){
+            return redirect()->back()->withErrors(['msg'=>'Can not delete a category with variation']);
         }
         $category->delete();
         return redirect()->back()->withSuccess('Delete Successfuly');

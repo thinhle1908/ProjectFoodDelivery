@@ -14,7 +14,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -45,21 +45,22 @@
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             @if(Auth::check())
-                            
+
                             <button class="dropdown-item" type="button">Welcome {{Auth::user()->firstname}} {{Auth::user()->lastname}}</button>
-                            <a href="/logout"><button class="dropdown-item" type="button">Logout</button></a> 
+                            <a href="/logout"><button class="dropdown-item" type="button">Logout</button></a>
                             @if(Auth::user()->role[0]->name=='user')
-                            <a href="/order"><button class="dropdown-item" type="button">Order</button></a> 
+                            <a href="/order"><button class="dropdown-item" type="button">Order</button></a>
                             @endif
                             @if(Auth::user()->role[0]->name=='saler')
-                            <a href="/saler/products"><button class="dropdown-item" type="button">Products</button></a> 
+                            <a href="/saler/products"><button class="dropdown-item" type="button">Products</button></a>
                             @endif
                             @if(Auth::user()->role[0]->name=='admin')
                             <a href="/admin/categories"><button class="dropdown-item" type="button">Categories</button></a>
                             @endif
-                          @else
-                           <a href="/login"><button class="dropdown-item" type="button">Sign in as User</button></a> 
+                            @else
+                            <a href="/login"><button class="dropdown-item" type="button">Sign in as User</button></a>
                             <a href="/login-saler"><button class="dropdown-item" type="button">Sign in as Saler</button></a>
+                            <a href="/login-admin"><button class="dropdown-item" type="button">Admin Page</button></a>
                             @endif
                         </div>
                     </div>
@@ -95,8 +96,8 @@
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="{{route('home')}}" class="text-decoration-none">
-                    <span class="h1 text-uppercase text-primary bg-dark px-2">Food</span>
-                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Wisdom</span>
+                    <span class="h1 text-uppercase text-primary bg-dark px-2">A</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">GREEN</span>
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
@@ -161,16 +162,8 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
-                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
-                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div>
+                            <a href="/" class="nav-item nav-link active">Home</a>
+                            <a href="shop.html" class="nav-item nav-link">Products</a>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
@@ -274,7 +267,7 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-    
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

@@ -22,7 +22,7 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'email',
-        'moblie',
+        'mobile',
         'password',
         'date_created',
         'last_login',

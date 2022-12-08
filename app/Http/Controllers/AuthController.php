@@ -116,6 +116,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:user',
             'password' => 'required|min:6|same:password_confirm',
             'password_confirm' => 'required|min:6',
+            'mobile' => 'required'
         ]);
         $role = 3;
         if ($page_redirect == "/login-admin") {
@@ -133,6 +134,7 @@ class AuthController extends Controller
                 'lastname' => $request->lastname,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'mobile'=>$request->mobile,
             ]);
             User_Role::create([
                 'user_id'=>$user->id,

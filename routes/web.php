@@ -33,9 +33,7 @@ Route::get('/item-details/{id}', [HomeController::class, 'itemDetails'])->name('
 Route::get('/about', function () {
     return view('about');
 })->name('about');
-Route::get('admin/', function () {
-    return view('adminDashboard');
-})->name('adminDashBoard');
+
 
 
 
@@ -73,6 +71,9 @@ Route::middleware('auth.admin')->prefix('admin')->group(function () {
 
 //Route saler
 Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
+    Route::get('/home', function () {
+        return view('salerHome');
+    })->name('salerHome');
     //Product
     Route::get('/products', [ProductController::class, 'index'])->name('products.get');
     Route::get('/delete-product/{id}', [ProductController::class, 'destroy'])->name('products.delete');
@@ -115,6 +116,9 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
 });
 
 Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('adminDashboard');
+    })->name('adminDashBoard');
     //Category
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.get');
     Route::get('/delete-category/{id}', [CategoryController::class, 'destroy'])->name('category.delete');

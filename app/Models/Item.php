@@ -14,4 +14,12 @@ class Item extends Model
     {
         return $this->belongsToMany(Variation_Option::class, 'item_configuration', 'item_id', 'variation_option_id');
     }
+    public function itemUpdatedByUser()
+    {
+        return $this->hasOne(User::class,'id','updated_by');
+    }
+    public function product()
+    {
+        return $this->hasOne(Product::class,'id','product_id');
+    }
 }

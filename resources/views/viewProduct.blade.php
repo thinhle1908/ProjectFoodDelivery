@@ -38,7 +38,6 @@
                             <th>Category</th>
                             <th>Description</th>
                             <th>Image</th>
-                            <th>Created_at</th>
                             <th>Updated_at</th>
                             <th>Action</th>
                         </tr>
@@ -50,7 +49,6 @@
                             <th>Category</th>
                             <th>Description</th>
                             <th>Image</th>
-                            <th>Created_at</th>
                             <th>Updated_at</th>
                             <th>Action</th>
                         </tr>
@@ -65,7 +63,6 @@
                                 @endforeach</th>
                             <th>{{$product->description}}</th>
                             <th><img height="100px" width="100px" src="{{asset('img/products').'/'.$product->image}}" alt=""></th>
-                            <th>{{$product->created_at}}</th>
                             <th>{{$product->updated_at}}</th>
                             <th><a href="product/{{$product->id}}/items"><button type="button" class="btn btn-primary">View Item</button></a> <a href="edit-product/{{$product->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-product/{{$product->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
                         </tr>

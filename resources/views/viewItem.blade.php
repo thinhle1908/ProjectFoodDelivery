@@ -40,12 +40,9 @@
                             <th>Sale_price</th>
                             <th>Quantity</th>
                             <th>Sold</th>
-                            <th>Created_by</th>
                             <th>Updated_by</th>
-                            <th>Created_at</th>
                             <th>Updated_at</th>
                             <th>Product_id</th>
-                            <th>Discount_id</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -58,12 +55,9 @@
                             <th>Sale_price</th>
                             <th>Quantity</th>
                             <th>Sold</th>
-                            <th>Created_by</th>
                             <th>Updated_by</th>
-                            <th>Created_at</th>
                             <th>Updated_at</th>
                             <th>Product_id</th>
-                            <th>Discount_id</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -77,12 +71,9 @@
                             <th>{{$item->sale_price}}</th>
                             <th>{{$item->quantity}}</th>
                             <th>{{$item->sold}}</th>
-                            <th>{{$item->created_by}}</th>
-                            <th>{{$item->updated_by}}</th>
-                            <th>{{$item->created_at}}</th>
+                            <th>{{$item->itemUpdatedByUser->firstname}} {{$item->itemUpdatedByUser->lastname}}</th>
                             <th>{{$item->updated_at}}</th>
-                            <th>{{$item->product_id}}</th>
-                            <th>{{$item->discount_id}}</th>
+                            <th>{{$item->product->name}}</th>
                             <th></a> <a href="edit-item/{{$item->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-item/{{$item->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
                         </tr>
                         @endforeach

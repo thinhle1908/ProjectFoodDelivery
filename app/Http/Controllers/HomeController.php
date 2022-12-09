@@ -15,11 +15,12 @@ class HomeController extends Controller
     }
     public function productDetails($id)
     {
+        $product = Product::find($id);
         $items = Item::where('product_id',$id)->get();
         if(!isset($items[0])){
             return redirect('/');
         }
-        return view('productDetails')->with('items',$items);
+        return view('productDetails')->with('items',$items)->with('product',$product);
     }
     public function itemDetails($id)
     {

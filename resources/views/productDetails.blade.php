@@ -1,8 +1,27 @@
 @extends('layout.homeLayout')
 @section('content')
 <!-- Products Start -->
+<div class="row px-xl-5 product_data">
+        <div class="col-lg-5 mb-30">
+            <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner bg-light">
+                    <div class="carousel-item active">
+                        <img class="w-75 h-75" src="{{asset('img/products')}}/{{$product->image}}" alt="Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7 h-auto mb-30">
+            <div class="h-100 bg-light p-30">
+                <h3>Name: {{$product->name}}</h3>
+                <h3 class="font-weight-semi-bold mb-4"></h3>
+                <p class="mb-4">Description: {{$product->description}}</p>
+            </div>
+        </div>
+    </div>
 <div class="container-fluid pt-5 pb-3">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">All PRODUCT</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">All ITEMS</span></h2>
     <div class="row px-xl-5">
         @foreach($items as $item)
 

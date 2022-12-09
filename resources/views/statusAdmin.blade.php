@@ -26,6 +26,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <a href="create-status"><button type="button" class="m-3 btn btn-primary">Create Status</button></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,12 +35,14 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                        <th>ID</th>
+                            <th>ID</th>
                             <th>Name</th>
+                             <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -47,6 +50,7 @@
                         <tr>
                             <th>{{$status->id}}</th>
                             <th>{{$status->name}}</th>
+                            <th><a href="edit-status/{{$status->id}}"><button type="button" class="btn btn-info">Edit</button></a> <a href="delete-status/{{$status->id}}"><button type="button" class="btn btn-danger">Delete</button></a></th>
                         </tr>
                         @endforeach
                     </tbody>

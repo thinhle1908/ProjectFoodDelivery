@@ -138,6 +138,14 @@ Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
     Route::get('orders',[OrderAdminController::class,'index'])->name('order.admin');
     //Status
     Route::get('status',[StatusAdminController::class,'index'])->name('status.admin');
+    //Create status 
+    Route::get('create-status',[StatusAdminController::class,'getCreateStatus'])->name('get.create.status');
+    Route::post('create-status',[StatusAdminController::class,'postCreateStatus'])->name('post.create.status');
+     //Edit status 
+     Route::get('edit-status/{id}',[StatusAdminController::class,'getEditStatus'])->name('get.edit.status');
+     Route::post('edit-status/{id}',[StatusAdminController::class,'postEditStatus'])->name('post.edit.status');
+     //Delete status
+     Route::get('delete-status/{id}',[StatusAdminController::class,'deleteStatus'])->name('get.delete.status');
     //Discount
     Route::get('discount',[DiscountAdminController::class,'index'])->name('discount.admin');
     

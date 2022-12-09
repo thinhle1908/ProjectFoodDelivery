@@ -35,4 +35,12 @@ class HomeController extends Controller
         $products = Product::all();
         return view('allProduct')->with('products',$products);
     }
+    public function searchProduct(Request $request)
+    {
+        $products = Product::all();
+        if($request->keyword){
+            $products = Product::where('name','like',$request->keyword.'%')->get();
+        }
+        return view('searchProduct')->with('products',$products);
+    }
 }

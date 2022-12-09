@@ -11,4 +11,8 @@ class Order_Item extends Model
     public $timestamps = false;
     protected $table = 'order_item';
     protected $fillable  = ['item_id','quantity','total','order_id'];
+    public function item()
+    {
+        return $this->hasMany(Item::class,'id','item_id');
+    }
 }

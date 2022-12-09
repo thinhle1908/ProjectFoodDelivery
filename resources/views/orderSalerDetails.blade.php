@@ -47,12 +47,12 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($order_item as $item)
+                        @foreach($order_item as $order)
                         <tr>
-                            <th>{{$item->id}}</th>
-                            <th>{{$item->item_id}}</th>
-                            <th>{{$item->quantity}}</th>
-                            <th>{{$item->order_id}}</th>
+                            <th>{{$order->id}}</th>
+                            <th>{{$order->item[0]->product->name}} @foreach($order->item[0]->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}}) @endforeach</th>
+                            <th>{{$order->quantity}}</th>
+                            <th>{{$order->order_id}}</th>
                         </tr>
                         @endforeach
                     </tbody>

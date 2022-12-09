@@ -22,7 +22,7 @@
                         </ul>
                     </div>
                     @endif
-                    
+
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label>First Name</label>
@@ -51,11 +51,15 @@
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order Total</span></h5>
                 <div class="bg-light p-30 mb-5">
                     <div class="border-bottom">
-                        <h6 class="mb-3">Item</h6>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-3">Item</h6>
+                            <h6 class="mb-3">Qty</h6>
+                        </div>
+
                         @foreach($cartItem as $caritem)
                         <div class="d-flex justify-content-between">
-                            <p>{{$caritem->item[0]->sku}}</p>
-                            <p>{{$caritem->item[0]->sku}}</p>
+                            <p>{{$caritem->item[0]->product->name}} @foreach($caritem->item[0]->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}}) @endforeach</p>
+                            <p>{{$caritem->qty}}</p>
                         </div>
                         @endforeach
                     </div>

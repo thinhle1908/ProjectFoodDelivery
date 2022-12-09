@@ -85,7 +85,7 @@
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
                         @if(isset($totalPrice))
-                        <h5>{{$totalPrice}}</h5>
+                        <h5>${{$totalPrice}}</h5>
                         @endif
                     </div>
                     <a href="{{route('checkout')}}"><button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button></a>

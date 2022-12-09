@@ -27,7 +27,7 @@ class CheckOutController extends Controller
         $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->get();
         $totalPrice=0;
         foreach($cartItem as $caritem){
-           $totalPrice+= number_format($caritem->item[0]->price * $caritem->qty);
+           $totalPrice+= number_format($caritem->item[0]->price) * $caritem->qty;
         }
         return view('checkout')->with('cartItem', $cartItem)->with('totalPrice',$totalPrice);
     }

@@ -41,6 +41,7 @@
                             <th>Total</th>
                             <th>Quantity</th>
                             <th>Created_at</th>
+                            <th>Status Name</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -55,6 +56,7 @@
                             <th>Total</th>
                             <th>Quantity</th>
                             <th>Created_at</th>
+                            <th>Status Name</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -70,7 +72,8 @@
                             <th>{{$salerorder->total}}</th>
                             <th>{{$salerorder->quantity}}</th>
                             <th>{{$salerorder->created_at}}</th>
-                            <th><a href="order-details/{{$salerorder->id}}"><button type="button" class="btn btn-primary">View Details</button></a></th>
+                            <th>{{$salerorder->name}}</th>
+                            <th><a href="order-details/{{$salerorder->order_id}}"><button type="button" class="btn btn-primary">View Details</button></a></th>
                         </tr>
                         @endforeach
                     </tbody>

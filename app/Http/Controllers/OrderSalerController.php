@@ -11,7 +11,7 @@ class OrderSalerController extends Controller
 {
     public function index()
     {
-        $salerOrders =Item::where('created_by',Auth::user()->id)->join('order_item','item.id','=','order_item.item_id')->join('order','order_item.order_id','=','order.id')->groupBy('order_item.order_id')->get();
+        $salerOrders =Item::where('created_by',Auth::user()->id)->join('order_item','item.id','=','order_item.item_id')->join('order','order_item.order_id','=','order.id')->join('status','order.status_id','status.id')->groupBy('order_item.order_id')->get();
         return view('orderSaler')->with('salerOrders',$salerOrders);
     }
     public function showOrderDetails($id)

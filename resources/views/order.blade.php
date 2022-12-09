@@ -31,7 +31,7 @@
                                 <th>Total</th>
                                 <th>Quantity</th>
                                 <th>Created_at</th>
-                                <th>Updated_at</th>
+                                <th>Status Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -47,7 +47,7 @@
                                 <td>${{$order->total}}</td>
                                 <td><span class="badge badge-success">{{$order->quantity}}</span></td>
                                 <td>{{$order->created_at}}</td>
-                                <td>{{$order->updated_at}}</td>
+                                <td>{{$order->status->name}}</td>
                                 <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
                             </tr>
                             @endforeach

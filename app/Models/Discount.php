@@ -9,4 +9,5 @@ class Discount extends Model
 {
     use HasFactory;
     protected $table = 'discount';
+    protected $fillable = ['name','discount_percent','active'];
 }

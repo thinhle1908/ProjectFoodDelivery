@@ -116,11 +116,10 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     Route::get('/product/{product_id}/edit-item/{id}', [ItemController::class, 'edit'])->name('edit.item.get');
     Route::post('/product/{product_id}/edit-item/{id}', [ItemController::class, 'update'])->name('edit.item.post');
     //Order
-    Route::get('/orders',[OrderSalerController::class,'index'])->name('saler.orders');
-    Route::get('/order-details/{id}',[OrderSalerController::class,'showOrderDetails'])->name('saler.order-details');
+    Route::get('/orders', [OrderSalerController::class, 'index'])->name('saler.orders');
+    Route::get('/order-details/{id}', [OrderSalerController::class, 'showOrderDetails'])->name('saler.order-details');
     //Discount
-    Route::get('discount',[DiscountSalerController::class,'index'])->name('discount.saler');
-    
+    Route::get('discount', [DiscountSalerController::class, 'index'])->name('discount.saler');
 });
 
 Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
@@ -135,20 +134,27 @@ Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
     Route::get('/edit-category/{id}', [CategoryController::class, 'show'])->name('category.create.post');
     Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('category.create.post');
     //Order
-    Route::get('orders',[OrderAdminController::class,'index'])->name('order.admin');
+    Route::get('orders', [OrderAdminController::class, 'index'])->name('order.admin');
     //Status
-    Route::get('status',[StatusAdminController::class,'index'])->name('status.admin');
+    Route::get('status', [StatusAdminController::class, 'index'])->name('status.admin');
     //Create status 
-    Route::get('create-status',[StatusAdminController::class,'getCreateStatus'])->name('get.create.status');
-    Route::post('create-status',[StatusAdminController::class,'postCreateStatus'])->name('post.create.status');
-     //Edit status 
-     Route::get('edit-status/{id}',[StatusAdminController::class,'getEditStatus'])->name('get.edit.status');
-     Route::post('edit-status/{id}',[StatusAdminController::class,'postEditStatus'])->name('post.edit.status');
-     //Delete status
-     Route::get('delete-status/{id}',[StatusAdminController::class,'deleteStatus'])->name('get.delete.status');
+    Route::get('create-status', [StatusAdminController::class, 'getCreateStatus'])->name('get.create.status');
+    Route::post('create-status', [StatusAdminController::class, 'postCreateStatus'])->name('post.create.status');
+    //Edit status 
+    Route::get('edit-status/{id}', [StatusAdminController::class, 'getEditStatus'])->name('get.edit.status');
+    Route::post('edit-status/{id}', [StatusAdminController::class, 'postEditStatus'])->name('post.edit.status');
+    //Delete status
+    Route::get('delete-status/{id}', [StatusAdminController::class, 'deleteStatus'])->name('get.delete.status');
     //Discount
-    Route::get('discount',[DiscountAdminController::class,'index'])->name('discount.admin');
-    
+    Route::get('discount', [DiscountAdminController::class, 'index'])->name('discount.admin');
+    //Create discount
+    Route::get('create-discount', [DiscountAdminController::class, 'getCreateDiscount'])->name('get.create.discount');
+    Route::post('create-discount', [DiscountAdminController::class, 'postCreateDiscount'])->name('post.create.discount');
+    //Edit discount
+    Route::get('edit-discount/{id}', [DiscountAdminController::class, 'getEditDiscount'])->name('get.edit.discount');
+    Route::post('edit-discount/{id}', [DiscountAdminController::class, 'postEditDiscount'])->name('post.edit.discount');
+    //Delete discount
+    Route::get('delete-discount/{id}', [DiscountAdminController::class, 'deleteDiscount'])->name('get.delete.discount');
 });
 Route::middleware(['auth.user'])->group(function () {
     Route::get('cart', [CartController::class, 'cart'])->name('cart');

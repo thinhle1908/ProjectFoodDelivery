@@ -120,6 +120,14 @@ Route::middleware(['auth.saler'])->prefix('saler')->group(function () {
     Route::get('/order-details/{id}', [OrderSalerController::class, 'showOrderDetails'])->name('saler.order-details');
     //Discount
     Route::get('discount', [DiscountSalerController::class, 'index'])->name('discount.saler');
+     //Create discount
+     Route::get('create-discount', [DiscountSalerController::class, 'getCreateDiscount'])->name('saler.get.create.discount');
+     Route::post('create-discount', [DiscountSalerController::class, 'postCreateDiscount'])->name('saler.post.create.discount');
+     //Edit discount
+     Route::get('edit-discount/{id}', [DiscountSalerController::class, 'getEditDiscount'])->name('saler.get.edit.discount');
+     Route::post('edit-discount/{id}', [DiscountSalerController::class, 'postEditDiscount'])->name('saler.post.edit.discount');
+     //Delete discount
+     Route::get('delete-discount/{id}', [DiscountSalerController::class, 'deleteDiscount'])->name('saler.get.delete.discount');
 });
 
 Route::middleware(['auth.admin'])->prefix('admin')->group(function () {

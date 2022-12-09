@@ -30,7 +30,11 @@
                 <div class="product-img position-relative overflow-hidden">
                     <img class="img-fluid w-100" src="{{asset('img/items')}}/{{$item->image}}" alt="">
                     <div class="product-action" data-id={{$item->id}}>
+                        @if(Auth::check())
                         <a class="btn btn-outline-dark btn-square btn-add-to-cart" href=""><i class="fa fa-shopping-cart "></i></a>
+                        @else
+                        <a class="btn btn-outline-dark btn-square" href="/login"><i class="fa fa-shopping-cart "></i></a>
+                        @endif
                         <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                         <a class="btn btn-outline-dark btn-square" href="{{asset('item-details')}}/{{$item->id}}"><i class="fa fa-search"></i></a>
@@ -81,10 +85,10 @@
                 product_qty: 1,
             },
         success: function(response) {
-            window.location.reload();
+            alert(response.status);
         }
         });
-
+        window.location.reload();
     });
 </script>
 @stop

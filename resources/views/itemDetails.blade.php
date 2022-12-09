@@ -36,7 +36,7 @@
 
         <div class="col-lg-7 h-auto mb-30">
             <div class="h-100 bg-light p-30">
-                <h3>{{$item->product->name}}@foreach($item->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}})  @endforeach</h3>
+                <h3>{{$item->product->name}}@foreach($item->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}}) @endforeach</h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -70,8 +70,8 @@
                     <button class="btn-add-to-cart btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
                         Cart</button>
                     @else
-                   <a href="/login"> <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                        Cart</button></a>
+                    <a href="/login"> <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
+                            Cart</button></a>
                     @endif
                 </div>
                 <div class="d-flex pt-2">
@@ -227,10 +227,15 @@
                 'product_id': product_id,
                 'product_qty': product_qty
             },
+
             success: function(response) {
                 alert(response.status);
             }
+
         });
+
+        window.location.reload();
+
     });
 </script>
 @stop

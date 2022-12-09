@@ -12,16 +12,16 @@ class CartController extends Controller
 {
     public function cart()
     {
-        if(!Auth::user()->cart){
+        if (!Auth::user()->cart) {
             return view('cart');
         }
         $cart_id = (Auth::user()->cart->id);
         $cartItem = Shopping_CartItem::where('cart_id', $cart_id)->get();
-        $totalPrice=0;
-        foreach($cartItem as $caritem){
-           $totalPrice+= number_format($caritem->item[0]->price * $caritem->qty);
+        $totalPrice = 0;
+        foreach ($cartItem as $caritem) {
+            $totalPrice += number_format($caritem->item[0]->price) * $caritem->qty;
         }
-        return view('cart')->with('cartItem', $cartItem)->with('totalPrice',$totalPrice);
+        return view('cart')->with('cartItem', $cartItem)->with('totalPrice', $totalPrice);
     }
     public function addCart(Request $request)
     {
@@ -40,13 +40,20 @@ class CartController extends Controller
                 }
                 $shopping_caritem = Shopping_CartItem::where('cart_id', $user_cart->id)->where('item_id', $item_id)->first();
                 if (!$shopping_caritem) {
+                    if (!($item->quantity >= $item_qty)) {
+                        return response()->json(['status' => "Not enough to provide"]);
+                    }
                     $shopping_caritem = new Shopping_CartItem();
                     $shopping_caritem->cart_id = $user_cart->id;
                     $shopping_caritem->item_id = $item_id;
                     $shopping_caritem->qty = $item_qty;
                     $shopping_caritem->save();
                 } else {
+                   
                     $old_qty = $shopping_caritem->qty;
+                    if (!($item->quantity >= ($old_qty+$item_qty))) {
+                        return response()->json(['status' => "Not enough to provide"]);
+                    }
                     $shopping_caritem->update([
                         'qty' => $old_qty + $item_qty
                     ]);
@@ -78,7 +85,7 @@ class CartController extends Controller
         $user_cart = Shopping_Cart::where('user_id', Auth::id())->first();
 
         $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->where('item_id', $request->id)->first();
-        if($cartItem){
+        if ($cartItem) {
             $cartItem->delete();
         }
     }

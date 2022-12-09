@@ -33,7 +33,7 @@
                     @if(isset($cartItem))
                     @foreach($cartItem as $caritem)
                     <tr data-id={{$caritem->item[0]->id}}>
-                        <td class="align-middle"><img src="img/items/{{$caritem->item[0]->image}}" alt="" style="width: 50px;"> {{$caritem->item[0]->sku}}</td>
+                        <td class="align-middle"><img src="img/items/{{$caritem->item[0]->image}}" alt="" style="width: 50px;"> {{$caritem->item[0]->product->name}} @foreach($caritem->item[0]->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}}) @endforeach</td>
                         <td class="align-middle">${{$caritem->item[0]->price}}</td>
                         <td class="align-middle">
                             <div class="input-group mx-auto quantity" style="width: 100px;">

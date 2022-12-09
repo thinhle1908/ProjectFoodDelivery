@@ -41,8 +41,8 @@
                             <th>Total</th>
                             <th>Quantity</th>
                             <th>Created_at</th>
-                            <th>Action</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -56,8 +56,8 @@
                             <th>Total</th>
                             <th>Quantity</th>
                             <th>Created_at</th>
-                            <th>Action</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>

@@ -13,6 +13,7 @@
     <form method="POST">
         @csrf
         <div class="form-group">
+            <h3>Variation: {{$variation->name}}</h3>
             <label for="name">Variation_Option Value</label>
             <input type="text" class="form-control" id="name" placeholder="Value" name="value" value="{{ $variation_option->value }}">
         </div>

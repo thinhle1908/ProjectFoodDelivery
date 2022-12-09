@@ -23,9 +23,14 @@ class Variation_OptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('createVariationOption');
+        $variation = Variation::find($id);
+        if(!$variation)
+        {
+            return redirect()->back()->withErrors(['msg'=>'The category does not exist']);
+        }
+        return view('createVariationOption')->with('variation',$variation);
     }
 
     /**
@@ -58,8 +63,13 @@ class Variation_OptionController extends Controller
      */
     public function show($variation_id)
     {
+        $variation = Variation::find($variation_id);
+        if(!$variation)
+        {
+            return redirect()->back()->withErrors(['msg'=>'The variation does not exist']);
+        }
         $variation_options = Variation_Option::where('variation_id',$variation_id)->get();
-        return view('viewVariationOption')->with('variation_options',$variation_options);
+        return view('viewVariationOption')->with('variation_options',$variation_options)->with('variation',$variation);
     }
 
     /**
@@ -70,8 +80,13 @@ class Variation_OptionController extends Controller
      */
     public function edit($variation_id,$id)
     {
+        $variation = Variation::find($variation_id);
+        if(!$variation)
+        {
+            return redirect()->back()->withErrors(['msg'=>'The category does not exist']);
+        }
         $variation_option = Variation_Option::find($id);
-        return view('editVariationOption')->with('variation_option',$variation_option);
+        return view('editVariationOption')->with('variation_option',$variation_option)->with('variation',$variation);
     }
 
     /**

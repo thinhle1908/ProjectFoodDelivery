@@ -25,8 +25,9 @@
     @endif
     <div class="card shadow mb-4">
         <div class="card-header py-3">
+            <h3>Variation: {{$variation->name}}</h3>
             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-            <a href="create-variation-option"><button type="button" class="m-3 btn btn-primary">Create Variation</button></a>
+            <a href="create-variation-option"><button type="button" class="m-3 btn btn-primary">Create Variation Option</button></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

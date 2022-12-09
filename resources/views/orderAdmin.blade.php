@@ -41,6 +41,8 @@
                             <th>Total</th>
                             <th>Quantity</th>
                             <th>Created_at</th>
+                            <th>Action</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -54,6 +56,8 @@
                             <th>Total</th>
                             <th>Quantity</th>
                             <th>Created_at</th>
+                            <th>Action</th>
+                            <th>Status</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -68,6 +72,8 @@
                             <th>{{$order->total}}</th>
                             <th>{{$order->quantity}}</th>
                             <th>{{$order->created_at}}</th>
+                            <th>{{$order->status->name}}</th>
+                            <th> <a href="edit-order/{{$order->id}}"><button type="button" class="btn btn-info">Edit</button></a> </th>
                         </tr>
                         @endforeach
                     </tbody>

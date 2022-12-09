@@ -144,6 +144,9 @@ Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
     Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('category.create.post');
     //Order
     Route::get('orders', [OrderAdminController::class, 'index'])->name('order.admin');
+     //Edit status order
+     Route::get('edit-order/{id}', [OrderAdminController::class, 'getEditStatus'])->name('get.edit.orderstatus');
+     Route::post('edit-order/{id}', [OrderAdminController::class, 'postEditStatus'])->name('post.edit.orderstatus');
     //Status
     Route::get('status', [StatusAdminController::class, 'index'])->name('status.admin');
     //Create status 
@@ -164,6 +167,7 @@ Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
     Route::post('edit-discount/{id}', [DiscountAdminController::class, 'postEditDiscount'])->name('post.edit.discount');
     //Delete discount
     Route::get('delete-discount/{id}', [DiscountAdminController::class, 'deleteDiscount'])->name('get.delete.discount');
+    
 });
 Route::middleware(['auth.user'])->group(function () {
     Route::get('cart', [CartController::class, 'cart'])->name('cart');

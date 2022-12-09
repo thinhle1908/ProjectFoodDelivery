@@ -52,10 +52,10 @@
                             <a href="/order"><button class="dropdown-item" type="button">Order</button></a>
                             @endif
                             @if(Auth::user()->role[0]->name=='saler')
-                            <a href="/saler/products"><button class="dropdown-item" type="button">Products</button></a>
+                            <a href="/saler/home"><button class="dropdown-item" type="button">Saler Page</button></a>
                             @endif
                             @if(Auth::user()->role[0]->name=='admin')
-                            <a href="/admin/categories"><button class="dropdown-item" type="button">Categories</button></a>
+                            <a href="/admin/"><button class="dropdown-item" type="button">Admin Page</button></a>
                             @endif
                             @else
                             <a href="/login"><button class="dropdown-item" type="button">Sign in as User</button></a>
@@ -154,8 +154,8 @@
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
-                        <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
-                        <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
+                        <span class="h1 text-uppercase text-dark bg-light px-2">A</span>
+                        <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">GREEN</span>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>

@@ -49,17 +49,17 @@
                     <span>Categories</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="orders">
+                <a class="nav-link" href="/admin/orders">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Orders</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="status">
+                <a class="nav-link" href="/admin/status">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Status</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="discount">
+                <a class="nav-link" href="/admin/discount">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Discount</span></a>
             </li>

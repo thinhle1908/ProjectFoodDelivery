@@ -2,7 +2,7 @@
 @section('content')
 <!-- Products Start -->
 <div class="container-fluid pt-5 pb-3">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">All PRODUCT</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">SEARCH PRODUCT</span></h2>
     <div class="row px-xl-5">
         @foreach($products as $product)
 

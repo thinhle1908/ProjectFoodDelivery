@@ -25,6 +25,7 @@
     @endif
     <div class="card shadow mb-4">
         <div class="card-header py-3">
+            <h4>Product name: {{$product->name}}</h4>
             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             <a href="create-item"><button type="button" class="m-3 btn btn-primary">Create</button></a>
         </div>

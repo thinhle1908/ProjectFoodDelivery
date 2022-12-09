@@ -31,6 +31,7 @@ class ItemController extends Controller
      */
     public function create($product_id)
     {
+        $product = Product::find($product_id);
         $product_category = Product_Category::where('product_id', $product_id)->get();
         try {
             if (!$product_category[0]->category_id) {
@@ -43,7 +44,7 @@ class ItemController extends Controller
 
 
 
-        return view('createItem')->with('variations', $variations)->with('discounts', $discounts);
+        return view('createItem')->with('variations', $variations)->with('discounts', $discounts)->with('product', $product);
     }
 
     /**
@@ -105,8 +106,13 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        $items = Item::where('product_id', $id)->where('created_by',Auth::user()->id)->get();
-        return view('viewItem')->with('items', $items);
+        $product = Product::find($id);
+        if (!$product) {
+
+            return redirect()->back()->withErrors(['msg' => 'The product does not exist']);
+        }
+        $items = Item::where('product_id', $id)->where('created_by', Auth::user()->id)->get();
+        return view('viewItem')->with('items', $items)->with('product', $product);
     }
 
     /**
@@ -117,6 +123,7 @@ class ItemController extends Controller
      */
     public function edit($product_id, $id)
     {
+        $product = Product::find($product_id);
         $item = Item::find($id);
         $product_category = Product_Category::where('product_id', $product_id)->get();
         try {
@@ -130,7 +137,7 @@ class ItemController extends Controller
 
 
 
-        return view('editItem')->with('variations', $variations)->with('discounts', $discounts)->with('item', $item);
+        return view('editItem')->with('variations', $variations)->with('discounts', $discounts)->with('item', $item)->with('product', $product);
     }
 
     /**

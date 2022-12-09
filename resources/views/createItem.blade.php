@@ -13,6 +13,7 @@
 <div class="container">
     <form method="POST" enctype="multipart/form-data">
         @csrf
+        <h4>Product name: {{$product->name}}</h4>
         <div class="form-group">
             <label for="name">Sku</label>
             <input type="text" class="form-control" id="name" placeholder="Sku " name="sku">

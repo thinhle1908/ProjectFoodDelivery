@@ -45,8 +45,12 @@ class CheckOutController extends Controller
         $totalPrice=0;
         $totalQty = 0;
         foreach($cartItem as $caritem){
-            $totalPrice+= number_format($caritem->item[0]->price * $caritem->qty);
+            if(!($caritem->item[0]->quantity>=$caritem->qty)){
+                return redirect()->back()->withErrors(['msg'=>'Insufficient quantity of goods']);
+            }
+            $totalPrice+= number_format($caritem->item[0]->price )* $caritem->qty;
             $totalQty += $caritem->qty;
+            
          }
         $order = Order::create([
             'firstname' => $request->firstname,
@@ -69,7 +73,10 @@ class CheckOutController extends Controller
                 'total'=>$caritem->item[0]->price * $caritem->qty,
                 'order_id'=>$order->id,
             ]);
-
+            $caritem->item[0]->update([
+                'quantity'=>number_format( $caritem->item[0]->quantity) - number_format($caritem->qty),
+                'sold'=>$caritem->item[0]->sold + $caritem->qty,
+            ]);
         }
         Transaction::create([
             'order_id'=>$order->id,

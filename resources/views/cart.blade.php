@@ -154,6 +154,7 @@
                 window.location.reload();
             },error: function(response){
                 alert(response.responseJSON.message);
+                window.location.reload();
             }
         });
 

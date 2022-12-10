@@ -43,8 +43,8 @@
                 <div class="text-center py-4">
                     <a class="h6 text-decoration-none text-truncate" href="">{{$item->product->name}} @foreach($item->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}}) @endforeach</a>
                     <div class="d-flex align-items-center justify-content-center mt-2">
-                        <h5>${{$item->price}}</h5>
-                        <h6 class="text-muted ml-2"><del>${{$item->sale_price}}</del></h6>
+                        <h5>${{$item->sale_price}}</h5>
+                        <h6 class="text-muted ml-2"><del>${{$item->price}}</del></h6>
                     </div>
                     <div class="d-flex align-items-center justify-content-center mb-1">
                         <small class="fa fa-star text-primary mr-1"></small>

@@ -47,7 +47,11 @@
                     </div>
                     <small class="pt-1">(99 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4">${{$item->price}}</h3>
+                <div class="d-flex align-items-center mt-2">
+                <h3 class="font-weight-semi-bold mb-4">${{$item->sale_price}}</h3>
+                <h3 class="font-weight-semi-bold mb-4 text-muted ml-2"><del>${{$item->price}}</del></h3>
+                </div>
+                <h5 class="mb-4">Quantity: {{$item->quantity}}</h5>
                 <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
                     clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
                     Nonumy</p>

@@ -4,7 +4,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Orders</h1>
+    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
         For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
@@ -32,48 +32,27 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Mobile</th>
-                            <th>Address</th>
-                            <th>Total</th>
+                        <th>ID</th>
+                            <th>Item ID</th>
                             <th>Quantity</th>
-                            <th>Created_at</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Mobile</th>
-                            <th>Address</th>
-                            <th>Total</th>
+                            <th>Item ID</th>
                             <th>Quantity</th>
-                            <th>Created_at</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Total</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($orders as $order)
+                        @foreach($order_item as $order)
                         <tr>
                             <th>{{$order->id}}</th>
-                            <th>{{$order->firstname}}</th>
-                            <th>{{$order->lastname}}</th>
-                            <th>{{$order->mobile}}</th>
-                            <th>{{$order->email}}</th>
-                            <th>{{$order->address}}</th>
-                            <th>{{$order->total}}</th>
+                            <th>{{$order->item[0]->product->name}} @foreach($order->item[0]->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}}) @endforeach</th>
                             <th>{{$order->quantity}}</th>
-                            <th>{{$order->created_at}}</th>
-                            <th>{{$order->status->name}}</th>
-                            <th><a href="order-details/{{$order->id}}"><button type="button" class="btn btn-primary">Order Details</button></a> <a href="edit-order/{{$order->id}}"><button type="button" class="btn btn-info">Edit</button></a> </th>
+                            <th>{{$order->order_id}}</th>
                         </tr>
                         @endforeach
                     </tbody>

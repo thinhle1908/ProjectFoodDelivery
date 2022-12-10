@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Order_Item;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
@@ -42,5 +43,13 @@ class OrderAdminController extends Controller
             'status_id'=>$status->id
         ]);
         return redirect(route('order.admin'))->withSuccess('Create Product Success');
+    }
+    public function getOrderDetails($id)
+    {
+        $order_item = Order_Item::where('order_id',$id)->get();
+        if(!isset($order_item[0])){
+            return redirect()->back()->withErrors(['msg'=>'The order_details does not exist']);
+        }
+        return view('orderAdminDetails')->with('order_item',$order_item);
     }
 }

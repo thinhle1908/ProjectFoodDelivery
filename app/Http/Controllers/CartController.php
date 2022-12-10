@@ -49,9 +49,9 @@ class CartController extends Controller
                     $shopping_caritem->qty = $item_qty;
                     $shopping_caritem->save();
                 } else {
-                   
+
                     $old_qty = $shopping_caritem->qty;
-                    if (!($item->quantity >= ($old_qty+$item_qty))) {
+                    if (!($item->quantity >= ($old_qty + $item_qty))) {
                         return response()->json(['status' => "Not enough to provide"]);
                     }
                     $shopping_caritem->update([
@@ -71,6 +71,13 @@ class CartController extends Controller
         $user_cart = Shopping_Cart::where('user_id', Auth::id())->first();
 
         $cartItem = Shopping_CartItem::where('cart_id', $user_cart->id)->where('item_id', $request->id)->first();
+
+        $item = Item::find($request->id);
+        if (!($item->quantity >= $request->quantity)) {
+            return response()->json([
+                'message' => 'Not enough quantity',
+            ],400);
+        }
         if ($request->quantity == 0) {
             $cartItem->delete();
         } else {

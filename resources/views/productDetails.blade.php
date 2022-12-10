@@ -5,8 +5,8 @@
         <div class="col-lg-5 mb-30">
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner bg-light">
-                    <div class="carousel-item active">
-                        <img class="w-75 h-75" src="{{asset('img/products')}}/{{$product->image}}" alt="Image">
+                    <div class="carousel-item active" style=" height:100%; object-fit:cover">
+                        <img class="img-fluid w-100 img-resize-child" src="{{asset('img/products')}}/{{$product->image}}" alt="Image">
                     </div>
                 </div>
             </div>
@@ -27,8 +27,8 @@
 
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
             <div class="product-item bg-light mb-4">
-                <div class="product-img position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="{{asset('img/items')}}/{{$item->image}}" alt="">
+                <div class="product-img position-relative overflow-hidden" style="object-fit:cover;">
+                    <img class="img-fluid w-100 img-resize-child" src="{{asset('img/items')}}/{{$item->image}}" alt="" >
                     <div class="product-action" data-id={{$item->id}}>
                         @if(Auth::check())
                         <a class="btn btn-outline-dark btn-square btn-add-to-cart" href=""><i class="fa fa-shopping-cart "></i></a>

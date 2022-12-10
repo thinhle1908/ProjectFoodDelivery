@@ -36,13 +36,13 @@
                         <td class="align-middle"><img src="img/items/{{$caritem->item[0]->image}}" alt="" style="width: 50px;"> {{$caritem->item[0]->product->name}} @foreach($caritem->item[0]->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}}) @endforeach</td>
                         <td class="align-middle">${{$caritem->item[0]->price}}</td>
                         <td class="align-middle">
-                            <div class="input-group mx-auto quantity" style="width: 100px;">
+                            <div class="input-group mx-auto quantity">
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-primary btn-minus btn-update-cart">
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input style="padding:0px" type="number" class="mg-0 pd-0 form-control form-control-sm bg-secondary border-0 text-center input-update-cart input-quantity" value="{{$caritem->qty}}">
+                                <input style="width: 55px;" type="number" class="form-control form-control-sm bg-secondary text-center input-update-cart input-quantity" value="{{$caritem->qty}}" min=1 max=50>
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-primary btn-plus btn-update-cart">
                                         <i class="fa fa-plus"></i>

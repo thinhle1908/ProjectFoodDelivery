@@ -42,7 +42,7 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="number" class="form-control form-control-sm bg-secondary border-0 text-center input-update-cart input-quantity" value="{{$caritem->qty}}" min=1 max=50>
+                                <input style="padding:0px" type="number" class="mg-0 pd-0 form-control form-control-sm bg-secondary border-0 text-center input-update-cart input-quantity" value="{{$caritem->qty}}">
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-primary btn-plus btn-update-cart">
                                         <i class="fa fa-plus"></i>

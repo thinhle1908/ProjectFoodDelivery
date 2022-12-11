@@ -52,7 +52,7 @@
                             <th>{{$order->id}}</th>
                             <th>{{$order->item[0]->product->name}} @foreach($order->item[0]->item_configuration as $item_config) ({{$item_config->variation->name}}:{{$item_config->value}}) @endforeach</th>
                             <th>{{$order->quantity}}</th>
-                            <th>{{$order->order_id}}</th>
+                            <th>${{$order->total}}</th>
                         </tr>
                         @endforeach
                     </tbody>

@@ -66,8 +66,8 @@
                             <th>{{$salerorder->order_id}}</th>
                             <th>{{$salerorder->firstname}}</th>
                             <th>{{$salerorder->lastname}}</th>
-                            <th>{{$salerorder->mobile}}</th>
                             <th>{{$salerorder->email}}</th>
+                            <th>{{$salerorder->mobile}}</th>
                             <th>{{$salerorder->address}}</th>
                             <th>{{$salerorder->total}}</th>
                             <th>{{$salerorder->quantity}}</th>

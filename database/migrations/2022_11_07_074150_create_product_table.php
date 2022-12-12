@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('image',250)->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
+            $table->bigInteger('created_by')->nullable();
         });
     }
 

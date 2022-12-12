@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Product_Category;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -18,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $prodcuts = Product::all();
+        $prodcuts = Product::where('created_by',Auth::user()->id)->get();
         return view('viewProduct')->with('products', $prodcuts);
     }
 
@@ -45,7 +46,8 @@ class ProductController extends Controller
             'image' => 'required|image',
             'name' => 'required',
             'description' => 'required|string',
-            'categories'=>'required|array'
+            'categories'=>'required|array',
+            
         ]);
         //Move Image to forder and get name image
         $nameimg = $request->file('image')->hashName();
@@ -54,7 +56,8 @@ class ProductController extends Controller
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image' => $nameimg
+            'image' => $nameimg,
+            'created_by'=>Auth::user()->id
         ]);
         
         foreach($request->categories as $category){

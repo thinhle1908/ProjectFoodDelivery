@@ -12,7 +12,9 @@ use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderSalerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SalerManagementController;
 use App\Http\Controllers\StatusAdminController;
+use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\Variation_OptionController;
 use App\Http\Controllers\VariationController;
 use App\Models\Variation_Option;
@@ -169,6 +171,10 @@ Route::middleware(['auth.admin'])->prefix('admin')->group(function () {
     Route::post('edit-discount/{id}', [DiscountAdminController::class, 'postEditDiscount'])->name('post.edit.discount');
     //Delete discount
     Route::get('delete-discount/{id}', [DiscountAdminController::class, 'deleteDiscount'])->name('get.delete.discount');
+    //User management
+    Route::get('users', [UserManagementController::class, 'index'])->name('user-management.admin');
+     //Saler management
+     Route::get('salers', [SalerManagementController::class, 'index'])->name('saler-management.admin');
 });
 Route::middleware(['auth.user'])->group(function () {
     Route::get('cart', [CartController::class, 'cart'])->name('cart');

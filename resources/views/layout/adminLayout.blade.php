@@ -63,6 +63,16 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Discount</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/users">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>User management</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/salers">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Saler management</span></a>
+            </li>
 
 
 
